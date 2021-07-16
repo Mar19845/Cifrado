@@ -19,5 +19,5 @@ def cleanTxt(tx):
         t = t.replace(w, '')
     return t
 
-t1 = cleanTxt(texto1)
+t1 = cleanTxt(texto)
 print(t1)
