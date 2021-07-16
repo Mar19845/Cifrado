@@ -1,23 +1,40 @@
-import numpy as np
-import nltk
-import re
+# Universidad del Valle de Guatemala
+# Cifrado de Información
+# Lab #1
+# Juan Manuel Marroquin 19845
+# Eduardo Ramírez Herrera 19946
+# Carlos Ráxtum 19721
 
-alpha = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'
+from functionality import *
 
-texto = 'Hola mi nombre es Russel, soy de la tribu 57, desea que lo ayude a limpiar su portico'
+st = True
 
-def cleanTxt(tx):
-    t = tx.upper()
-    t = t.replace('Á','A')
-    t = t.replace('É','E')
-    t = t.replace('Í','I')
-    t = t.replace('Ó','O')
-    t = t.replace('Ú','U')
-    remover = [' ','.',',','(',')','1','2','3','4','5','6','7','8','9','0']
-    
-    for w in remover:
-        t = t.replace(w, '')
-    return t
+print("*****ANALISIS DE FUERZA BRUTA*****\n")
+while(st):
+    print(" 1.Caesar \n 2.Afín \n 3.Vigenère\n 4.SALIR\n")
+    opt = int(input("Elija el metodo que desea utilizar: " ))
 
-t1 = cleanTxt(texto1)
-print(t1)
+    if opt == 1:
+
+        print("\n*****CAESAR METHOD*****\n")
+        caesarInit()
+
+    if opt == 2:
+        
+        print("\n*****AFIN METHOD*****\n")
+        afinInit()
+
+    if opt == 3:
+        
+        print("\n*****VIGENERE METHOD*****\n")
+        vigenereInit()
+
+    if opt == 4:
+        
+        print("\n*****FIN DEL PROGRAMA*****\n")
+        st = False
+
+    if opt<1 or opt>4:
+        print("\nOpción no valida, intente de nuevo\n")
+        
+        
