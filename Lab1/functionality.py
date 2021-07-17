@@ -31,9 +31,9 @@ def cleanTxt(tx):
 def caesarInit():
 
     mensaje = input("Ingrese el mensaje que desea encriptar: ")
-    paso = int(input("Ingrese la cantidad de letras trasladar: ", "\n"))
+    paso = int(input("Ingrese la cantidad de letras trasladar: "))
 
-    print("MENSAJE ENCRIPTADO EN CAESAR: \n")
+    print("\nMENSAJE ENCRIPTADO EN CAESAR: \n")
 
     mensaje=cleanTxt(mensaje)
     mCifrado = ca.encryptC(mensaje, paso)
@@ -47,9 +47,9 @@ def caesarInit():
 def afinInit():
 
     mensaje = input("Ingrese el mensaje que desea encriptar: ")
-    paso = int(input("Ingrese la cantidad de letras trasladar: ", "\n"))
+    paso = int(input("Ingrese la cantidad de letras trasladar: "))
 
-    print("MENSAJE ENCRIPTADO EN AFIN: \n")
+    print("\nMENSAJE ENCRIPTADO EN AFIN: \n")
 
     mensaje=cleanTxt(mensaje)
     mCifrado = af.encryptA(mensaje, paso)
@@ -63,9 +63,9 @@ def afinInit():
 def vigenereInit():
     
     mensaje = input("Ingrese el mensaje que desea encriptar: ")
-    paso = int(input("Ingrese la cantidad de letras trasladar:" , "\n"))
+    paso = int(input("Ingrese la cantidad de letras trasladar:"))
 
-    print("MENSAJE ENCRIPTADO EN VIGENERE: \n")
+    print("\nMENSAJE ENCRIPTADO EN VIGENERE: \n")
 
     mensaje=cleanTxt(mensaje)
     mCifrado = vi.encryptV(mensaje, paso)
