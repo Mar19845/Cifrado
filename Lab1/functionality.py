@@ -62,16 +62,18 @@ def afinInit():
 
 def vigenereInit():
     
-    mensaje = input("Ingrese el mensaje que desea encriptar: ")
-    paso = int(input("Ingrese la cantidad de letras trasladar:"))
-
-    print("\nMENSAJE ENCRIPTADO EN VIGENERE: \n")
-
-    mensaje=cleanTxt(mensaje)
-    mCifrado = vi.encryptV(mensaje, paso)
-    print(mCifrado, "\n") 
+    text = input("Ingrese el mensaje que desea encriptar: ")
+    clave = input("Ingrese la cantidad de letras trasladar: ")
+    
+    input("PRESIONA ENTER PARA ENCRIPTAR DE NUEVO\n")  
+    text=cleanTxt(text)
+    mCifrado = encryptV(text, clave)
+    #encryptV()
 
     input("PRESIONA ENTER PARA DECRIPTAR\n")
-    mDes=vi.decryptV(mCifrado, paso)
-    print(mDes, "\n")
+    print(mCifrado) 
+    mDes=decryptV(mCifrado, clave)
+    print(mDes)
+    print("")
+    #decryptV()
     
