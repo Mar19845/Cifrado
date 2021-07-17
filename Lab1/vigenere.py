@@ -1,4 +1,4 @@
-def vigenere_decipher(text,clave):
+def decryptV(text,clave):
     result = ""
     for i in range(0,len(text)): #Para todo el texto
         desp = get_desp(clave[i % len(clave)]) #Obtenemos el desplazamiento asociado a la clave
@@ -7,7 +7,7 @@ def vigenere_decipher(text,clave):
     return result
 
 
-def vigenere_cipher(plain,clave):
+def encryptV(plain,clave):
     result = ""
     for i in range(0,len(plain)): #Para todo el texto
        desp = get_desp(clave[i % len(clave)]) #Desplazamiento asociado a la letra clave
