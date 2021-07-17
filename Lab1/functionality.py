@@ -1,4 +1,4 @@
-from caesar import *
+import caesar as ca
 from vigenere import *
 from afin import *
 
@@ -30,16 +30,18 @@ def cleanTxt(tx):
 
 def caesarInit():
 
-    f = open("cipher1.txt", "r")
+    mensaje = input("Ingrese el mensaje que desea encriptar: ")
+    paso = int(input("Ingrese la cantidad de letras trasladar: "))
     print("MENSAJE ENCRIPTADO EN CAESAR: \n")
-    caesar = f.read()
-    print(caesar, "\n")
+    
+    cleanTxt(mensaje)
+    ca.encryptC(mensaje, paso)
 
     input("PRESIONA ENTER PARA DECRIPTAR\n") 
-    decryptC()
+    ca.decryptC(mensaje, paso)
 
     input("PRESIONA ENTER PARA ENCRIPTAR DE NUEVO\n")
-    encryptV()
+    ca.encryptC(mensaje, paso)
     
     
 def afinInit():
