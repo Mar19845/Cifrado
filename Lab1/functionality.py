@@ -1,6 +1,6 @@
 import caesar as ca
-from vigenere import *
-from afin import *
+import vigenere as vi
+import afin as af
 
 import numpy as np
 import nltk
@@ -31,42 +31,47 @@ def cleanTxt(tx):
 def caesarInit():
 
     mensaje = input("Ingrese el mensaje que desea encriptar: ")
-    paso = int(input("Ingrese la cantidad de letras trasladar: "))
+    paso = int(input("Ingrese la cantidad de letras trasladar: ", "\n"))
+
     print("MENSAJE ENCRIPTADO EN CAESAR: \n")
-    
+
     mensaje=cleanTxt(mensaje)
     mCifrado = ca.encryptC(mensaje, paso)
+    print(mCifrado, "\n") 
 
     input("PRESIONA ENTER PARA DECRIPTAR\n")
-    print(mCifrado) 
     mDes=ca.decryptC(mCifrado, paso)
-    print(mDes)
+    print(mDes, "\n")
     
     
 def afinInit():
 
-    f = open("cipher2.txt", "r")
-    print("MENSAJE ENCRIPTADO EN AFÍN \n")
-    afin = f.read()
-    print(afin, "\n")
+    mensaje = input("Ingrese el mensaje que desea encriptar: ")
+    paso = int(input("Ingrese la cantidad de letras trasladar: ", "\n"))
+
+    print("MENSAJE ENCRIPTADO EN AFIN: \n")
+
+    mensaje=cleanTxt(mensaje)
+    mCifrado = af.encryptA(mensaje, paso)
+    print(mCifrado, "\n") 
 
     input("PRESIONA ENTER PARA DECRIPTAR\n")
-    decryptA()
-
-    input("PRESIONA ENTER PARA ENCRIPTAR DE NUEVO\n")
-    encryptA()
+    mDes=af.decryptA(mCifrado, paso)
+    print(mDes, "\n")
     
 
 def vigenereInit():
     
-    f = open("cipher3.txt", "r")
+    mensaje = input("Ingrese el mensaje que desea encriptar: ")
+    paso = int(input("Ingrese la cantidad de letras trasladar:" , "\n"))
+
     print("MENSAJE ENCRIPTADO EN VIGENERE: \n")
-    vig = f.read()
-    print(vig, "\n")
+
+    mensaje=cleanTxt(mensaje)
+    mCifrado = vi.encryptV(mensaje, paso)
+    print(mCifrado, "\n") 
 
     input("PRESIONA ENTER PARA DECRIPTAR\n")
-    decryptV()
-
-    input("PRESIONA ENTER PARA ENCRIPTAR DE NUEVO\n")
-    encryptV()
+    mDes=vi.decryptV(mCifrado, paso)
+    print(mDes, "\n")
     

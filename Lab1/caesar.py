@@ -11,7 +11,6 @@ def encryptC(mensaje, desp):
         else:
             cipher += chr((ord(char) + desp - 65) % 26 + 65)  # Prima letra mayuscula (A)
     
-    print("ENCRIPTADO\n")
     return cipher
 
 def decryptC(mensaje, desp):
@@ -25,5 +24,4 @@ def decryptC(mensaje, desp):
         else:
             plain += chr((ord(char) -65-desp) % 26 + 65)
     
-    print("NCRIPTADOnt\n")
     return plain
