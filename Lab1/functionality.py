@@ -67,12 +67,12 @@ def vigenereInit():
     
     input("PRESIONA ENTER PARA ENCRIPTAR DE NUEVO\n")  
     text=cleanTxt(text)
-    mCifrado = encryptV(text, clave)
+    mCifrado = vi.encryptV(text, clave)
     #encryptV()
 
     input("PRESIONA ENTER PARA DECRIPTAR\n")
     print(mCifrado) 
-    mDes=decryptV(mCifrado, clave)
+    mDes= vi.decryptV(mCifrado, clave)
     print(mDes)
     print("")
     #decryptV()
