@@ -34,14 +34,13 @@ def caesarInit():
     paso = int(input("Ingrese la cantidad de letras trasladar: "))
     print("MENSAJE ENCRIPTADO EN CAESAR: \n")
     
-    cleanTxt(mensaje)
-    ca.encryptC(mensaje, paso)
+    mensaje=cleanTxt(mensaje)
+    mCifrado = ca.encryptC(mensaje, paso)
 
-    input("PRESIONA ENTER PARA DECRIPTAR\n") 
-    ca.decryptC(mensaje, paso)
-
-    input("PRESIONA ENTER PARA ENCRIPTAR DE NUEVO\n")
-    ca.encryptC(mensaje, paso)
+    input("PRESIONA ENTER PARA DECRIPTAR\n")
+    print(mCifrado) 
+    mDes=ca.decryptC(mCifrado, paso)
+    print(mDes)
     
     
 def afinInit():
