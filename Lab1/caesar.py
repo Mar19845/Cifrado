@@ -1,27 +1,27 @@
 import functionality as func
 
+alpha = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'
+
 def encryptC(mensaje, desp):
     
     text=func.cleanTxt(mensaje)
     cipher = ''
-    for i in range(len(mensaje)):
-        char = text[i]
-        if (char.islower()):
-            cipher += chr((ord(char) + desp - 97) % 27 + 97)  # 97 letra minuscula (a)
-        else:
-            cipher += chr((ord(char) + desp - 65) % 27 + 65)  # Prima letra mayuscula (A)
+    for i in text:
+        suma = alpha.find(i) + desp
+        modulo = int(suma) % len(alpha)
+        cipher += str(alpha[modulo])
     
     return cipher
 
 def decryptC(mensaje, desp):
     
     text=func.cleanTxt(mensaje)
-    plain = ""
-    for i in range(len(mensaje)):
-        char = text[i]
-        if (char.islower()):
-            plain += chr((ord(char) -97-desp) % 27 + 97)
-        else:
-            plain += chr((ord(char) -65-desp) % 27 + 65)
+    cipher = ''
+    for i in text:
+        suma = alpha.find(i) - desp
+        modulo = int(suma) % len(alpha)
+        
+        cipher += str(alpha[modulo])
+        
     
-    return plain
+    return cipher
