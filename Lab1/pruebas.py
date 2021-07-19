@@ -48,16 +48,21 @@ def metica(dist):
     
 
     plt.figure(1)
+
     plt.subplot(211)
-    plt.plot(list(freq.keys()),list(freq.values()),label='Teorico',color='red')
+    plt.bar(range(len(freq)), list(freq.values()), align='center',color='red',label='Teorico')
+    plt.xticks(range(len(freq)), list(freq.keys()))
+    
     plt.ylabel('Frecuencias')
     plt.legend()
+
     plt.subplot(212)
-    plt.plot(list(dist.keys()),list(dist.values()),label='Experimental')
-
-
+    plt.bar(range(len(dist)), list(dist.values()), align='center',color='blue',label='Experimental')
+    plt.xticks(range(len(dist)), list(dist.keys()))
+    
     plt.ylabel('Frecuencias')
     plt.legend()
+
     plt.show()
 
     
