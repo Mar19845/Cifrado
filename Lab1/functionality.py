@@ -1,14 +1,14 @@
 import caesar as ca
 import vigenere as vi
 import afin as af
-
+from afin import afinCypher
 import numpy as np
 import nltk
 import re
 
 alpha = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'
 afin_key = [7, 15]
-
+afincypher = afinCypher(alpha)
 #Tengo mis dudas sobre si dejar esta función aqui o si meterla en las funciones 
 #encrypt para que limpie cada cosa, si tienen ideas son bienvenidas
 
@@ -53,11 +53,11 @@ def afinInit():
     print("\nMENSAJE ENCRIPTADO EN AFIN: \n")
 
     mensaje=cleanTxt(mensaje)
-    mCifrado = af.encryptA(afin_key[0], afin_key[1], mensaje)
+    mCifrado = afincypher.encryptA(afin_key[0], afin_key[1], mensaje)
     print(mCifrado, "\n") 
 
     input("PRESIONA ENTER PARA DECRIPTAR\n")
-    mDes=af.decryptA(afin_key[0], afin_key[1], mCifrado)
+    mDes=afincypher.decryptA(afin_key[0], afin_key[1], mCifrado)
     print(mDes, "\n")
     
 
@@ -65,14 +65,13 @@ def vigenereInit():
     
     text = input("Ingrese el mensaje que desea encriptar: ")
     clave = input("Ingrese la cantidad de letras trasladar: ")
-    
-    input("PRESIONA ENTER PARA ENCRIPTAR DE NUEVO\n")  
+    print("\nMENSAJE ENCRIPTADO EN AFIN: \n")
     text=cleanTxt(text)
     mCifrado = vi.encryptV(text, clave)
+    print(mCifrado) 
     #encryptV()
 
     input("PRESIONA ENTER PARA DECRIPTAR\n")
-    print(mCifrado) 
     mDes= vi.decryptV(mCifrado, clave)
     print(mDes)
     print("")

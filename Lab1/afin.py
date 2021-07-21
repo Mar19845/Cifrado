@@ -1,21 +1,32 @@
 
 import functionality as func
-from itertools import *
-import numpy as np 
-import nltk
-import re
 
 
-def __init__(self, abc):
-        self.abc = abc
-        
+class afinCypher:
+    def __init__(self, alphabet):
+            self.alphabet = alphabet
+            
 
-def encryptA(self, a, b, message):
+    def encryptA(self, a, b, message):
 
-    text=func.cleanTxt(message)
-    return "".join(self.abc[(self.abc.index(l)*a + b) % len(self.abc)] for l in text)
+        text=func.cleanTxt(message)
+        return "".join(self.alphabet[(self.alphabet.index(l)*a + b) % len(self.alphabet)] for l in text)
 
-def decryptA(self, a, b, message):
+    def decryptA(self, a, b, message):
 
-    text=func.cleanTxt(message)
-    return "".join(self.abc[(int((self.abc.index(l) - b) * self.inv_mod(a, len(self.abc)))) % len(self.abc)] for l in text)
+        text=func.cleanTxt(message)
+        return "".join(self.alphabet[(int((self.alphabet.index(l) - b) * self.inverso(a, len(self.alphabet)))) % len(self.alphabet)] for l in text)
+    
+    def inverso(self, a, m):
+        g, x, y = self.euc_alg(a, m)
+        if g != 1:
+            raise Exception('modular inverse does not exist')
+        else:
+            return x % m
+
+    def euc_alg(self, a, b):  # sourcery skip: remove-unnecessary-else
+        if a == 0:
+            return (b, 0, 1)
+        else:
+            g, x, y = self.euc_alg(b % a, a)
+            return (g, y - (b // a) * x, x)       
