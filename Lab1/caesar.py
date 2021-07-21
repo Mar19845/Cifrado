@@ -2,6 +2,7 @@ import functionality as func
 
 alpha = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'
 
+
 def encryptC(mensaje, desp):
     
     text=func.cleanTxt(mensaje)

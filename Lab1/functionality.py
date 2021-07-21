@@ -7,6 +7,7 @@ import nltk
 import re
 
 alpha = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'
+afin_key = [7, 15]
 
 #Tengo mis dudas sobre si dejar esta función aqui o si meterla en las funciones 
 #encrypt para que limpie cada cosa, si tienen ideas son bienvenidas
@@ -48,17 +49,15 @@ def caesarInit():
 def afinInit():
 
     mensaje = input("Ingrese el mensaje que desea encriptar: ")
-    a = input("Ingrese la cantidad de letras trasladar: ")
-    b = input("Ingrese un numero primo: ")
 
     print("\nMENSAJE ENCRIPTADO EN AFIN: \n")
 
     mensaje=cleanTxt(mensaje)
-    mCifrado = af.encryptA(mensaje, a, b)
+    mCifrado = af.encryptA(afin_key[0], afin_key[1], mensaje)
     print(mCifrado, "\n") 
 
     input("PRESIONA ENTER PARA DECRIPTAR\n")
-    mDes=af.decryptA(mCifrado, a,b)
+    mDes=af.decryptA(afin_key[0], afin_key[1], mCifrado)
     print(mDes, "\n")
     
 
