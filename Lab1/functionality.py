@@ -48,16 +48,17 @@ def caesarInit():
 def afinInit():
 
     mensaje = input("Ingrese el mensaje que desea encriptar: ")
-    paso = int(input("Ingrese la cantidad de letras trasladar: "))
+    a = input("Ingrese la cantidad de letras trasladar: ")
+    b = input("Ingrese un numero primo: ")
 
     print("\nMENSAJE ENCRIPTADO EN AFIN: \n")
 
     mensaje=cleanTxt(mensaje)
-    mCifrado = af.encryptA(mensaje, paso)
+    mCifrado = af.encryptA(mensaje, a, b)
     print(mCifrado, "\n") 
 
     input("PRESIONA ENTER PARA DECRIPTAR\n")
-    mDes=af.decryptA(mCifrado, paso)
+    mDes=af.decryptA(mCifrado, a,b)
     print(mDes, "\n")
     
 
