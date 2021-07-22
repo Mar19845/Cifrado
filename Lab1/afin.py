@@ -20,11 +20,11 @@ class afinCypher:
     def inverso(self, a, m):
         g, x, y = self.euc_alg(a, m)
         if g != 1:
-            raise Exception('modular inverse does not exist')
+            raise Exception('No existe el inverso modular!')
         else:
             return x % m
 
-    def euc_alg(self, a, b):  # sourcery skip: remove-unnecessary-else
+    def euc_alg(self, a, b):
         if a == 0:
             return (b, 0, 1)
         else:
