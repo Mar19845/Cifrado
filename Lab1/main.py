@@ -46,7 +46,7 @@ while(st):
                 BrutoA()
             if opt == 3:   
                 print("\n*****VIGENERE METHOD*****\n")
-                vigenereInit()
+                BrutoV()
                     
             if opt<1 or opt>3:
                 print("\nOpción no valida, intente de nuevo\n")

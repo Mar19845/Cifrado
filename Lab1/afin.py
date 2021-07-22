@@ -1,5 +1,6 @@
 
 import functionality as func
+import vigenere as vi
 from itertools import *
 import numpy as np 
 import nltk
@@ -35,6 +36,15 @@ class afinCypher:
             g, x, y = self.euc_alg(b % a, a)
             return (g, y - (b // a) * x, x)
 
+    def decryptV(self, key, text):
+        key_array = [key[i % len(key)].upper() for i in range(len(text))]
+        return ''.join(
+            self.abc[
+                (self.abc.index(text[i]) - self.abc.index(key_array[i]))
+                % len(self.abc)
+            ]
+            for i in range(len(text))
+        )
     def probabilidad(self, text):
         text = func.cleanTxt(text)
         tokens = re.findall('.', text)
@@ -62,4 +72,24 @@ class afinCypher:
             return self.encryptA(better[0], better[1], text), better
 
     def metrica(self, teoric, textProb):
-        return {l: abs(teoric[l] - textProb[l]) for l in self.alphabet}       
+        return {l: abs(teoric[l] - textProb[l]) for l in self.alphabet}
+    
+    
+    def fuerzabrutaV(self, text):
+        keys = []
+        options_keys = []
+        for i in range(5):
+            a = list(product(self.alphabet, repeat=i))
+            for j in a:
+                b = "".join(j)
+                c = 'abv'
+                try:
+                    c = self.decryptV(b, text)
+                except:
+                    c = 'abv'
+                d = self.probabilidad(c)
+                metric = self.metrica(self.tprob, d)
+                abs_error = sum(value for key, value in metric.items())
+                keys.append((b, abs_error))
+        better = sorted(keys, key=lambda x: x[1])[0][0]
+        return self.decryptV(better, text), better
