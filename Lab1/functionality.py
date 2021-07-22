@@ -5,6 +5,7 @@ from afin import afinCypher
 import numpy as np
 import nltk
 import re
+import matplotlib.pyplot as plt
 
 tprob = {'A': 0.1253, 'B': 0.0142, 'C': 0.0468, 'D': 0.0586, 'E': 0.1368, 'F': 0.0069, 'G': 0.0101, 'H': 0.007, 'I': 0.0625, 'J': 0.0044, 'K': 0.0002, 'L': 0.0497, 'M': 0.0315, 'N': 0.0671, 'Ñ': 0.0031, 'O': 0.0868, 'P': 0.0251, 'Q': 0.0088, 'R':0.0687, 'S':0.0798, 'T':0.0463, 'U': 0.0393, 'V': 0.009, 'W': 0.0001, 'X': 0.0022, 'Y': 0.009, 'Z': 0.0052}
 alpha = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'
@@ -93,6 +94,32 @@ def distribucion():
         dist[i]= float(dist.get(i)/len(mensaje))
 
     return dist
+
+
+def metica(dist):
+    freq = {
+        'A':0.11525,'B':0.02215,'C':0.04019,'D':0.05010,'E':0.12181,'F':0.00692,'G':0.01768,'H':0.00703,'I':0.06247,'J':0.00493,'K':0.00011,'L':0.04967,'M':0.03157,'N':0.06712,'Ñ':0.0311,'O':0.08683,'P':0.02510,'Q':0.00877,'R':0.06871,'S':0.07977,'T':0.04632,'U':0.02927,'V':0.01138,'W':0.00017,'X':0.00215,'Y':0.01008,'Z':0.00467
+    }
+
+    
+
+    plt.figure(1)
+
+    plt.subplot(211)
+    plt.bar(range(len(freq)), list(freq.values()), align='center',color='red',label='Teorico')
+    plt.xticks(range(len(freq)), list(freq.keys()))
+    
+    plt.ylabel('Frecuencias')
+    plt.legend()
+
+    plt.subplot(212)
+    plt.bar(range(len(dist)), list(dist.values()), align='center',color='blue',label='Experimental')
+    plt.xticks(range(len(dist)), list(dist.keys()))
+    
+    plt.ylabel('Frecuencias')
+    plt.legend()
+
+    plt.show()
 
 def BrutoC():
     f = open("cipher1.txt", "r")

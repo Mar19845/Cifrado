@@ -31,7 +31,8 @@ while(st):
     if opt == 4:
         
         print("\n*****DISTRIBUCCION*****\n")
-        distribucion()
+        s=distribucion()
+        metica(s)
     if opt == 5:
         while(st):
             print(" 1.Caesar \n 2.Afín \n 3.Vigenère\n 4.SALIR\n")
