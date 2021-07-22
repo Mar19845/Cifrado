@@ -42,7 +42,7 @@ while(st):
                 BrutoC()
             if opt == 2:         
                 print("\n*****AFIN METHOD*****\n")
-                afinInit()
+                BrutoA()
             if opt == 3:   
                 print("\n*****VIGENERE METHOD*****\n")
                 vigenereInit()

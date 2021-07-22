@@ -1,11 +1,15 @@
 
 import functionality as func
-
+from itertools import *
+import numpy as np 
+import nltk
+import re
 
 class afinCypher:
-    def __init__(self, alphabet):
+
+    def __init__(self, alphabet, tprob):
             self.alphabet = alphabet
-            
+            self.tprob = tprob
 
     def encryptA(self, a, b, message):
 
@@ -29,4 +33,33 @@ class afinCypher:
             return (b, 0, 1)
         else:
             g, x, y = self.euc_alg(b % a, a)
-            return (g, y - (b // a) * x, x)       
+            return (g, y - (b // a) * x, x)
+
+    def probabilidad(self, text):
+        text = func.cleanTxt(text)
+        tokens = re.findall('.', text)
+        freq = nltk.FreqDist(tokens)
+        freq = freq.most_common(len(self.alphabet))
+        freq_array = [i[1] for i in freq]
+        freq_array = np.array(freq_array)
+        p = freq_array / freq_array.sum()
+        prob = {l[0]: p[count] for count, l in enumerate(freq)}
+        for l in self.alphabet:
+            if l not in prob:
+                prob[l] = 0
+        return {l: prob[l] for l in self.alphabet}
+
+    def fuerzabrutaAfin(self, text):
+            key = []
+            for i in range(len(self.alphabet)):
+                for j in range(len(self.alphabet)):
+                    a = self.encryptA(i, j, text)
+                    b = self.probabilidad(a)
+                    metric = self.metrica(self.tprob, b)
+                    abs_error = sum(value for key, value in metric.items())
+                    key.append((i, j, abs_error))
+            better = sorted(key, key=lambda x: x[2])[0][0:2]
+            return self.encryptA(better[0], better[1], text), better
+
+    def metrica(self, teoric, textProb):
+        return {l: abs(teoric[l] - textProb[l]) for l in self.alphabet}       
