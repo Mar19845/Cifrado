@@ -11,3 +11,14 @@ def cleanTxt(tx):
     for w in remover:
         t = t.replace(w, '')
     return t
+
+def binaryCleaner(binary):
+
+    t = binary
+
+    remover = [' ','b','B']
+
+    for l in remover:
+        t = t.replace(l,'')
+
+    return t
