@@ -31,7 +31,8 @@ while(st):
     if opt == 4:
         
         print("\n*****DISTRIBUCCION*****\n")
-        distribucion()
+        s=distribucion()
+        metica(s)
     if opt == 5:
         while(st):
             print(" 1.Caesar \n 2.Afín \n 3.Vigenère\n 4.SALIR\n")
@@ -45,7 +46,7 @@ while(st):
                 BrutoA()
             if opt == 3:   
                 print("\n*****VIGENERE METHOD*****\n")
-                vigenereInit()
+                BrutoV()
                     
             if opt<1 or opt>3:
                 print("\nOpción no valida, intente de nuevo\n")
