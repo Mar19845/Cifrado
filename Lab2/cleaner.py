@@ -22,3 +22,9 @@ def binaryCleaner(binary):
         t = t.replace(l,'')
 
     return t
+
+def listJoiner(lista, caracter):
+    if isinstance(lista, list):
+        return caracter.join(map(str, lista))
+
+    raise TypeError("El parámetro lista debe ser una lista")

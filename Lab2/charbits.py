@@ -1,10 +1,16 @@
 import cleaner as cl
 def toBits(phrase):
 
+    chainbit = []
     for i in phrase:
         w = cl.binaryCleaner(bin(ord(i)))
-        print("Codigo ascii de", i,":", w)
-    return w
+        print( i,"en binario:", w)
+        chainbit.append(w)
+
+    number = cl.listJoiner(chainbit, '')
+
+    return number
+    
 
 
 def toChar(bits):
