@@ -1,8 +1,6 @@
 import base64
   
 
-
-
 def stringToBase64(text):
     sample_string_bytes = text.encode("ascii")
     base64_bytes = base64.b64encode(sample_string_bytes)
