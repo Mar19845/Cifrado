@@ -1,4 +1,6 @@
 import cleaner as cl
+import binascii
+
 def toBits(phrase):
 
     chainbit = []
@@ -13,8 +15,12 @@ def toBits(phrase):
     
 
 
-def toChar(bits):
-    for i in bits:
-        w = ord(bin(i))
-        print("Codigo binario de", i,":", w)
-    return w
+def toChar(number):
+    splitted = cl.chainBreaker(number, ' ', 8)
+    element = splitted.split(' ')
+
+    elements = list(map(int, element))
+    print(type(elements[0]))
+    #a = int(elements[0],2)
+    #print(a)
+
