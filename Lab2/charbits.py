@@ -1,5 +1,4 @@
 import cleaner as cl
-import binascii
 
 def toBits(phrase):
 
@@ -25,8 +24,3 @@ def toChar(number):
     phrase = cl.listJoiner(letters, '')
 
     return phrase
-        #print(j)
-    
-    #a = int(elements[0],2)
-    #print(a)
-

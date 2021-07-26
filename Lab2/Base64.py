@@ -15,9 +15,7 @@ def Base64ToString(text):
     sample_string = sample_string_bytes.decode("ascii")
     return sample_string
 
-s = input('Ingresa un texto para convertirlo a base64   ')
-d = stringToBase64(s)
-f = Base64ToString(d)
-print('\n')
-print(d)
-print(f)
+
+
+
+

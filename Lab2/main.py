@@ -7,7 +7,7 @@
 
 from cleaner import *
 import charbits as cb
-
+import Base64 as b
 st = True
 
 print("\n***** LABORATORIO #2 *****")
@@ -33,7 +33,20 @@ while(st):
     if opt == 2:
         
         print("\n***** Char to Base64 *****\n")
+
+        s = input('Ingresa un texto para convertirlo a base64:')
+
+        d = b.stringToBase64(s)
+
         
+        print("\nCadena de caracteres a Base64:",d)
+
+        input("\nPresiona ENTER para mostrar la cadena de base64 a caracteres")
+
+        f = b.Base64ToString(d)
+
+        print("\n Cadena de base64 a caracteres:",f)
+
 
     if opt == 3:
         
