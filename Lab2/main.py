@@ -19,34 +19,22 @@ while(st):
 
         print("\n***** Char to Bits *****\n")
         phrase = input("Escriba algo: ")
-
         phrase = cleanTxt(phrase)
         val, translate = cb.toBits(phrase)
-
         print("\nCadena de caracteres a bits:", val)
-
         input("Presiona ENTER para mostrar la cadena de bits a caracteres")
-
         original = cb.toChar(translate)
         print("\nCadena de bits a caracteres:", original)
 
     if opt == 2:
         
         print("\n***** Char to Base64 *****\n")
-
         s = input('Ingresa un texto para convertirlo a base64:')
-
         d = b.stringToBase64(s)
-
-        
         print("\nCadena de caracteres a Base64:",d)
-
         input("\nPresiona ENTER para mostrar la cadena de base64 a caracteres")
-
         f = b.Base64ToString(d)
-
         print("\n Cadena de base64 a caracteres:",f)
-
 
     if opt == 3:
         
