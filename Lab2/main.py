@@ -9,7 +9,6 @@ from cleaner import *
 import charbits as cb
 import Base64 as b
 st = True
-
 print("\n***** LABORATORIO #2 *****")
 while(st):
     print("\n 1.Caracteres a Bits \n 2.Caracteres a Base64 \n 3.Operación XOR \n 4.SALIR \n")
@@ -39,6 +38,10 @@ while(st):
     if opt == 3:
         
         print("\n***** XOR Operation *****\n")
+        c1 = input("Ingresa una cadena de n bits: \n")
+        print("\nIngresa una cadena de",len(c1),"bits: ")
+        c2 = input()
+
         
     if opt == 4:
         
