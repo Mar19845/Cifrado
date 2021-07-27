@@ -28,5 +28,15 @@ def listJoiner(lista, caracter):
         return caracter.join(map(str, lista))
 
     raise TypeError("El parámetro lista debe ser una lista")
-
+    
+def chainBreaker(number, splitter, step):
+    a = ''
+    count = 0
+    for i in number[::-1]:
+        if count == step:    
+            a += splitter
+            count = 0
+        count += 1
+        a += i
+    return("".join(reversed(a)))
     

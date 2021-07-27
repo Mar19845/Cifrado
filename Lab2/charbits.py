@@ -24,3 +24,4 @@ def toChar(number):
     phrase = cl.listJoiner(letters, '')
 
     return phrase
+

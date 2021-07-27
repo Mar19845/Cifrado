@@ -8,6 +8,7 @@
 from cleaner import *
 import charbits as cb
 import Base64 as b
+import xor as xor
 st = True
 print("\n***** LABORATORIO #2 *****")
 while(st):
@@ -41,8 +42,10 @@ while(st):
         c1 = input("Ingresa una cadena de n bits: \n")
         print("\nIngresa una cadena de",len(c1),"bits: ")
         c2 = input()
+        bins = xor.toBits(c1, c2)
+        print("\nCadena de bits con operacion XOR:",bins)
 
-        
+
     if opt == 4:
         
         print("\n***** FIN DEL PROGRAMA *****\n")
