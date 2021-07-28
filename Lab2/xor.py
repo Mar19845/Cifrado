@@ -19,6 +19,8 @@ def xori(c1, c2):
     result = list(map(lambda x, y: x ^ y, bits, bits1))
     result = cl.listJoiner(result, '')
     
+    
+    ################################Inciso B#################################
     #Texto plano
     fig, ax = plt.subplots()
     x= range(0,1)
@@ -56,10 +58,38 @@ def xori(c1, c2):
     plt.title("Conversion")
     plt.show()
 
-    return result
+    ################################Inciso C#################################
+    #bigrama
+    listStr=[]
+    result1="".join(map(str, result1))
+    for i in range(0, len(result1), 2):
+        val= result1[i] + result1[i+1]
+        listStr.append(val)
 
-
+   # print(listStr)
+    n, bins, patches=plt.hist(listStr )
+    plt.xlabel("Values")
+    plt.ylabel("Frequency")
+    plt.title("Bigrama")
+    plt.show()
     
+    
+    #Trigrama
+    listStr=[]
+    result1="".join(map(str, result1))
+    for i in range(0, len(result1), 3):
+        val= result1[i] + result1[i+1]+ result1[i+2]
+        listStr.append(val)
+
+   # print(listStr)
+    n, bins, patches=plt.hist(listStr )
+    plt.xlabel("Values")
+    plt.ylabel("Frequency")
+    plt.title("Bigrama")
+    plt.show()
+    
+    
+    return result
 def rand_Bits(p):
     #codigo extraido de 
     #https://www.geeksforgeeks.org/python-program-to-generate-random-binary-string/
