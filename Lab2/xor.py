@@ -1,6 +1,6 @@
 import cleaner as cl
 
-def toBits(c1, c2):
+def xori(c1, c2):
 
     bits = []
     

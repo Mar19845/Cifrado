@@ -42,7 +42,7 @@ while(st):
         c1 = input("Ingresa una cadena de n bits: \n")
         print("\nIngresa una cadena de",len(c1),"bits: ")
         c2 = input()
-        bins = xor.toBits(c1, c2)
+        bins = xor.xori(c1, c2)
         print("\nCadena de bits con operacion XOR:",bins)
 
 
