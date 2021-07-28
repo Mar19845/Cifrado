@@ -1,6 +1,7 @@
 import cleaner as cl
 import matplotlib.pyplot as plt
 import random
+import numpy as np 
 
 def xori(c1, c2):
 
@@ -18,16 +19,47 @@ def xori(c1, c2):
     result = list(map(lambda x, y: x ^ y, bits, bits1))
     result = cl.listJoiner(result, '')
     
-    result1 = []
-    result1 = list(map(lambda x, y: x ^ y, bits, bits1))
+    #Texto plano
+    fig, ax = plt.subplots()
+    x= range(0,1)
+    ax.plot(x)
+    plt.xticks(range(0,2,1))
+    n, bins, patches=plt.hist(bits)
+    plt.xlabel("Values")
+    plt.ylabel("Frequency")
+    plt.title("Texo plano")
+    plt.show()
+    
+    
+    # texto bits
+    fig, ax = plt.subplots()
+    x= range(0,1)
+    ax.plot(x)
+    plt.xticks(range(0,2,1))
     n, bins, patches=plt.hist(bits1)
     plt.xlabel("Values")
     plt.ylabel("Frequency")
-    plt.title("Histogram")
+    plt.title("Texto en bits")
+    plt.show()
+    
+    
+    #conversion
+    result1 = []
+    fig, ax = plt.subplots()
+    x= range(0,1)
+    ax.plot(x)
+    plt.xticks(range(0,2,1))
+    result1 = list(map(lambda x, y: x ^ y, bits, bits1))
+    n, bins, patches=plt.hist(result1 )
+    plt.xlabel("Values")
+    plt.ylabel("Frequency")
+    plt.title("Conversion")
     plt.show()
 
     return result
 
+
+    
 def rand_Bits(p):
     #codigo extraido de 
     #https://www.geeksforgeeks.org/python-program-to-generate-random-binary-string/
