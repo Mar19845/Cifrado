@@ -29,39 +29,12 @@ def xori(c1, c2):
     n, bins, patches=plt.hist(bits)
     plt.xlabel("Values")
     plt.ylabel("Frequency")
-    plt.title("Texo plano")
+    plt.title("Histograma cadena de bits")
     plt.show()
     
-    
-    # texto bits
-    fig, ax = plt.subplots()
-    x= range(0,1)
-    ax.plot(x)
-    plt.xticks(range(0,2,1))
-    n, bins, patches=plt.hist(bits1)
-    plt.xlabel("Values")
-    plt.ylabel("Frequency")
-    plt.title("Texto en bits")
-    plt.show()
-    
-    
-    #conversion
-    result1 = []
-    fig, ax = plt.subplots()
-    x= range(0,1)
-    ax.plot(x)
-    plt.xticks(range(0,2,1))
-    result1 = list(map(lambda x, y: x ^ y, bits, bits1))
-    n, bins, patches=plt.hist(result1 )
-    plt.xlabel("Values")
-    plt.ylabel("Frequency")
-    plt.title("Conversion")
-    plt.show()
-
-    ################################Inciso C#################################
     #bigrama
     listStr=[]
-    result1="".join(map(str, result1))
+    result1="".join(map(str, bits))
     for i in range(0, len(result1), 2):
         val= result1[i] + result1[i+1]
         listStr.append(val)
@@ -76,6 +49,50 @@ def xori(c1, c2):
     
     #Trigrama
     listStr=[]
+    result1="".join(map(str, bits))
+    for i in range(0, len(result1), 3):
+        val= result1[i] + result1[i+1]+ result1[i+2]
+        listStr.append(val)
+
+   # print(listStr)
+    n, bins, patches=plt.hist(listStr )
+    plt.xlabel("Values")
+    plt.ylabel("Frequency")
+    plt.title("Trigrama")
+    plt.show()
+    
+    
+    ################################Inciso D#################################
+    #conversion
+    result1 = []
+    fig, ax = plt.subplots()
+    x= range(0,1)
+    ax.plot(x)
+    plt.xticks(range(0,2,1))
+    result1 = list(map(lambda x, y: x ^ y, bits, bits1))
+    n, bins, patches=plt.hist(result1 )
+    plt.xlabel("Values")
+    plt.ylabel("Frequency")
+    plt.title("Conversion XOR")
+    plt.show()
+
+    #bigrama
+    listStr=[]
+    result1="".join(map(str, result1))
+    for i in range(0, len(result1), 2):
+        val= result1[i] + result1[i+1]
+        listStr.append(val)
+
+   # print(listStr)
+    n, bins, patches=plt.hist(listStr )
+    plt.xlabel("Values")
+    plt.ylabel("Frequency")
+    plt.title("Bigrama XOR")
+    plt.show()
+    
+    
+    #Trigrama
+    listStr=[]
     result1="".join(map(str, result1))
     for i in range(0, len(result1), 3):
         val= result1[i] + result1[i+1]+ result1[i+2]
@@ -85,7 +102,7 @@ def xori(c1, c2):
     n, bins, patches=plt.hist(listStr )
     plt.xlabel("Values")
     plt.ylabel("Frequency")
-    plt.title("Bigrama")
+    plt.title("Trigrama XOR")
     plt.show()
     
     
