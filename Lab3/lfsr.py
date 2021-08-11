@@ -1,30 +1,32 @@
-from random import *
+import random as ran
     
-def LFSR(n, tap, loops):
+def randomGen():
+    number = ran.randint(0, 1)
+    return number   
+
+def lfsr(n, tap, loops):
     sd = ""
+    bit = ""
     tap = sorted(tap, reverse = True)
-    cont = 0
+    count = 0
     r = 0
     
-    for i in range(n):
-        x = randomNumber()
+    for num in range(n):
+        x = randomGen()
 
         sd += str(x)
       
     print("No LFSR: " + sd)
     
-    while (cont != loops):
+    while (count != loops):
         x = int(sd[0])
-        for i in tap[1:]:
-            x = x ^ int(sd[i])
+
+        for num in tap[1:]:
+            x = x ^ int(sd[num])
             
         sd = str(x) + sd
-        cont += 1
+        count += 1
     
     print("LFSR: " + sd)
-    
-def randomNumber():
-    num = randint(0, 1)
-    return num   
 
-LFSR(8, [3, 1, 5], 3)
+lfsr(9, [4, 2, 5], 6)
