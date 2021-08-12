@@ -1,5 +1,6 @@
 import lcg as lcg
 import lfsr as lfsr
+import compare as compare
 def __init__():
     st = True
     while st:
@@ -19,6 +20,6 @@ def __init__():
             st = False
         if opt<1 or opt>5:
             print("\nOpción no valida, intente de nuevo\n")
-            
+
 if __name__ == "__main__":
     __init__()
