@@ -1,7 +1,7 @@
 import random
 from random import randint
 
-def Wichmann_Hill(val1, val2):
+def Wichmann_Hill(val1, listlength):
     seed1 = randint(1, 30000)
     seed2 = randint(1, 30000)
     seed3 = randint(1, 30000)
