@@ -1,6 +1,7 @@
 import lcg as lcg
 import lfsr as lfsr
-import compare as compare
+import WichmanHill as Wichman_Hill
+#import compare as compare
 def __init__():
     st = True
     while st:
@@ -12,7 +13,8 @@ def __init__():
         if opt == 2:
             lfsr.lfsr(9, [4, 2, 5], 6)
         if opt == 3:
-            pass
+            length = int(input("ingrese el tamaño de la lista"))
+            print(Wichman_Hill.Wichmann_Hill(1,length))
         if opt == 4:
             pass
         if opt == 5:
