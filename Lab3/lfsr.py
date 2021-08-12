@@ -28,5 +28,5 @@ def lfsr(n, tap, loops):
         count += 1
     
     print("LFSR: " + sd)
+    
 
-lfsr(9, [4, 2, 5], 6)
