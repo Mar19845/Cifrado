@@ -6,15 +6,6 @@ from skimage import io,data
 from PIL import Image  
 
 
-img = io.imread('image.jpg',as_gray=True)
-
-J = Image.fromarray(img)
-J = J.resize((J.size[0]//2, J.size[1]//2), Image.LANCZOS)
-I = np.array(J)
-plt.figure()
-plt.imshow(I, cmap='gray')
-plt.show()
-
 def xor(a, b):
     m = len(a)
     n = len(b)
@@ -55,3 +46,18 @@ def bits2img(x, shape):
         I[i] = int(bts[i], 2)
     I = I.reshape(m,n)
     return I
+
+
+img = io.imread('mono2.png',as_gray=True)
+
+J = Image.fromarray(img)
+J = J.resize((J.size[0]//2, J.size[1]//2), Image.LANCZOS)
+I = np.array(J) * 255
+#I = I.astype(float)
+I = I.astype(int)
+#I.astype(np.uint8)
+
+m,n = I.shape
+for i in range(0, m):
+    for j in range(0, n):
+        print(I[i,j])
