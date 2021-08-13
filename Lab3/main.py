@@ -13,8 +13,8 @@ def __init__():
         if opt == 2:
             lfsr.lfsr(9, [4, 2, 5], 6)
         if opt == 3:
-            length = int(input("ingrese el tamaño de la lista"))
-            print(Wichman_Hill.Wichmann_Hill(1,length))
+            length = int(input("ingrese el tamaño de la lista "))
+            print(Wichman_Hill.Wichmann_Hill(length))
         if opt == 4:
             pass
         if opt == 5:
