@@ -7,7 +7,7 @@ def Wichmann_Hill(listlength):
     seed3 = randint(1, 30000)
     
     k = ''
-    for i in range(listlength):
+    for _ in range(listlength):
        
         seed1 = 171 * seed1 % 30269
         seed2 = 172 * seed2 % 30307
