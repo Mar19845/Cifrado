@@ -72,12 +72,12 @@ def init_compare_data():
     bit_img= img2bits(I)
     bit_lcg = lcg.init_lcg(len(bit_img))
     bit_wh = Wichman_Hill.Wichmann_Hill(len(bit_img))
-    #bit_lfsr = lfsr.lfsr()
+    bit_lfsr = lfsr.lfsr(len(bit_img), [4, 2, 5], 6)
 
     #xor de la cadena de la imagen original y las cadena aleatoria
     xor_img_lcg = xor(bit_img,bit_lcg)
     xor_img_wh = xor(bit_img,bit_wh)
-    #xor_img_lfsr= xor(bit_img,bit_lfsr)
+    xor_img_lfsr= xor(bit_img,bit_lfsr)
 
     I_lcg = bits2img(bit_lcg, I.shape)
     I_xor_lcg = bits2img(xor_img_lcg, I.shape)
@@ -94,7 +94,7 @@ def init_compare_data():
     plt.subplot(1,2,1)
     plt.imshow(I, cmap='gray')
     plt.subplot(1,2,2)
-    plt.imshow(I_lcg-I_xor_lcg, cmap='gray')
+    plt.imshow(I-I_xor_lcg, cmap='gray')
     plt.suptitle('Imagen original vs Resta de las imagenes de bits de LCG')
     plt.show()
     
@@ -115,4 +115,23 @@ def init_compare_data():
     plt.subplot(1,2,2)
     plt.imshow(I_wh-I_xor_wh, cmap='gray')
     plt.suptitle('Imagen original vs Resta de las imagenes de bits de WH')
+    plt.show()
+
+    I_lfsr = bits2img(bit_lfsr, I.shape)
+    I_xor_lfsr = bits2img(xor_img_lfsr, I.shape)
+    I_og_after_xor_wh = bits2img(xor(bit_wh,xor_img_wh), I.shape)
+    #lfsr 
+    plt.figure(figsize=(15,8))
+    plt.subplot(1,2,1)
+    plt.imshow(I_lfsr, cmap='gray')
+    plt.subplot(1,2,2)
+    plt.imshow(I_xor_lfsr, cmap='gray')
+    plt.suptitle('Imagenes de bits de LFSR vs XOR con imagen original')
+    plt.show()
+    plt.figure(figsize=(15,8))
+    plt.subplot(1,2,1)
+    plt.imshow(I, cmap='gray')
+    plt.subplot(1,2,2)
+    plt.imshow(I_lfsr-I_xor_lfsr, cmap='gray')
+    plt.suptitle('Imagen original vs Resta de las imagenes de bits de LFSR')
     plt.show()
