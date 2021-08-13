@@ -57,7 +57,25 @@ I = np.array(J) * 255
 I = I.astype(int)
 #I.astype(np.uint8)
 
+plt.figure()
+plt.imshow(I, cmap='gray')
+plt.show()
 m,n = I.shape
+bit=''
 for i in range(0, m):
     for j in range(0, n):
-        print(I[i,j])
+        #print(str(bin(I[i,j]))[2:])
+        c=str(bin(I[i,j]))[2:]
+        c=c.replace('b','')
+        bit+= c
+
+
+s = np.random.choice(2, size=len(bit))
+s2 = ''
+for i in range(0, len(s)):
+    s2 = s2 + str(s[i])
+
+
+r = xor(bit,s2)
+print(len(bit))
+print(len(s2))
