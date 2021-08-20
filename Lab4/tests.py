@@ -10,7 +10,7 @@ import random
 import GF2Matrix
 #import gf2matrix
 
-#Cumulative Test
+#Cumulative Test 1
 
 def normcdf(n):
     return 0.5 * math.erfc(-n * math.sqrt(0.5))
@@ -70,7 +70,7 @@ def cumulative_sums_test(bits):
     p_forward  = p_value(n, forward_max)
     p_backward = p_value(n,backward_max)
     
-#DFT TESTS
+#DFT TESTS 2
 
 def dft_test(bits):
     n = len(bits)
@@ -104,7 +104,7 @@ def dft_test(bits):
     success = (p >= 0.01)
     return success
 
-#frequency_within_block_test
+#frequency_within_block_test 3
 
 #ones_table = [bin(i)[2:].count('1') for i in range(256)]
 def count_ones_zeroes(bits):
@@ -155,7 +155,7 @@ def frequency_within_block_test(bits):
     return success
 
 
-#longest_run_ones_in_a_block_test
+#longest_run_ones_in_a_block_test 4
 
 def probs(K,M,i):
     M8 =      [0.2148, 0.3672, 0.2305, 0.1875]
@@ -248,7 +248,7 @@ def longest_run_ones_in_a_block_test(bits):
     return success
 
     
-#MONOBITS TEST
+#MONOBITS TEST 5
 
 def count_ones_zeroes(bits):
     ones = 0
@@ -273,7 +273,7 @@ def monobit_test(bits):
     success = (p >= 0.01)
     return success
 
-#RUNS TESTS
+#RUNS TESTS 6
 
 def count_ones_zeroes(bits):
     ones = 0
@@ -309,7 +309,7 @@ def runs_test(bits):
     success = (p >= 0.01)
     return success
 
-# RANDOM EXCURSION TEST
+# RANDOM EXCURSION TEST 7
 def random_excursion_test(bits):
     n = len(bits)
 
@@ -407,7 +407,7 @@ def random_excursion_test(bits):
 
 
 
-# RANDOM EXCURSION VARIANT TEST
+# RANDOM EXCURSION VARIANT TEST 8
 def random_excursion_variant_test(bits):
     n = len(bits)
 
@@ -530,6 +530,7 @@ def convert_bit_string(cadena):
     for i in cadena:
         bits.append(int(i))
     return bits
+    
 def init_tests(cadena):
     bits = convert_bit_string(cadena)
     bmrt=binary_matrix_rank_test(bits=bits)
