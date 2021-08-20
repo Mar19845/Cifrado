@@ -14,7 +14,9 @@ def __init__():
             n = lcg.init_lcg(length)
             print(n)
             t = test.monobit(n, length)
+            t1 = test.run(n, length)
             print(t)
+            print(t1)
 
 
         if opt == 2:
