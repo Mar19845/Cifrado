@@ -154,33 +154,6 @@ def frequency_within_block_test(bits):
     return (success,p,None)
 
 
-def berelekamp_massey(bits):
-    n = len(bits)
-    b = [0 for x in bits]  #initialize b and c arrays
-    c = [0 for x in bits]
-    b[0] = 1
-    c[0] = 1
-    
-    L = 0
-    m = -1
-    N = 0
-    while (N < n):
-        #compute discrepancy
-        d = bits[N]
-        for i in range(1,L+1):
-            d = d ^ (c[i] & bits[N-i])
-        if (d != 0):  # If d is not zero, adjust poly
-            t = c[:]
-            for i in range(0,n-N+m):
-                c[N-m+i] = c[N-m+i] ^ b[i] 
-            if (L <= (N/2)):
-                L = N + 1 - L
-                m = N
-                b = t 
-        N = N +1
-    # Return length of generator and the polynomial
-    return L , c[0:L]
-
 #longest_run_ones_in_a_block_test
 
 def probs(K,M,i):
