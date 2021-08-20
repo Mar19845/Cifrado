@@ -11,7 +11,7 @@ def __init__():
         opt = int(input("Elija el metodo que desea testear: " ))
         if opt == 1:
             length = int(input("ingrese el tamaño de la lista "))
-            n = lcg.init_lcg(length)
+            n = lcg.LCG(length)
             print(n)
             t = test.monobit(n, length)
             t1 = test.run(n, length)

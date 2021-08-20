@@ -8,6 +8,7 @@ from fractions import Fraction
 import cmath
 import random
 import GF2Matrix
+#import gf2matrix
 
 #Cumulative Test
 
@@ -101,7 +102,7 @@ def dft_test(bits):
     p = math.erfc(abs(d)/math.sqrt(2))
 
     success = (p >= 0.01)
-    return (success,p,None)
+    return success
 
 #frequency_within_block_test
 
@@ -129,7 +130,7 @@ def frequency_within_block_test(bits):
     
     if len(bits) < 100:
         print("Too little data for test. Supply at least 100 bits")
-        return False,1.0,None
+        return False
     
     print("  n = %d" % len(bits))
     print("  N = %d" % N)
@@ -151,7 +152,7 @@ def frequency_within_block_test(bits):
     
     p = gammaincc((num_of_blocks/2.0),float(chisq)/2.0)
     success = (p >= 0.01)
-    return (success,p,None)
+    return success
 
 
 #longest_run_ones_in_a_block_test
@@ -172,7 +173,7 @@ def longest_run_ones_in_a_block_test(bits):
     n = len(bits)
 
     if n < 128:
-        return (False,1.0,None)
+        return False
     elif n<6272:
         M = 8
     elif n<750000:
@@ -244,7 +245,7 @@ def longest_run_ones_in_a_block_test(bits):
     p = gammaincc(K/2.0, chi_sq/2.0)
     
     success = (p >= 0.01)
-    return (success,p,None)
+    return success
 
     
 #MONOBITS TEST
@@ -270,7 +271,7 @@ def monobit_test(bits):
     p = math.erfc(float(s)/(math.sqrt(float(n)) * math.sqrt(2.0)))
     
     success = (p >= 0.01)
-    return (success,p,None)
+    return success
 
 #RUNS TESTS
 
@@ -295,7 +296,7 @@ def runs_test(bits):
     print("  tau ",tau)
 
     if abs(prop-0.5) > tau:
-        return (False,0.0,None)
+        return False,
 
     vobs = 1.0
     for i in range(n-1):
@@ -306,7 +307,7 @@ def runs_test(bits):
       
     p = math.erfc(abs(vobs - (2.0*n*prop*(1.0-prop)))/(2.0*math.sqrt(2.0*n)*prop*(1-prop) ))
     success = (p >= 0.01)
-    return (success,p,None)
+    return success
 
 # RANDOM EXCURSION TEST
 def random_excursion_test(bits):
@@ -402,14 +403,9 @@ def random_excursion_test(bits):
         print("PASS")
     else:    
         print("FAIL: Data not random")
-    return (success, None, plist)
+    return success
 
-if __name__ == "__main__":
-    bits = [0,1,1,0,1,1,0,1,0,1]
-    success, _, plist = random_excursion_test(bits)
-    
-    print("success =",success)
-    print("plist = ",plist)
+
 
 # RANDOM EXCURSION VARIANT TEST
 def random_excursion_variant_test(bits):
@@ -461,7 +457,7 @@ def random_excursion_variant_test(bits):
         print("PASS")
     else:    
         print("FAIL: Data not random")
-    return (success,None,plist)
+    return success
     
     #Binary Matrix test
 def binary_matrix_rank_test(bits,M=32,Q=32):
@@ -474,7 +470,7 @@ def binary_matrix_rank_test(bits,M=32,Q=32):
     if N < 38:
         print("  Number of blocks must be greater than 37")
         p = 0.0
-        return False,p,None
+        return False
         
     # Compute the reference probabilities for FM, FMM and remainder 
     r = M
@@ -504,9 +500,10 @@ def binary_matrix_rank_test(bits,M=32,Q=32):
         block = bits[blknum*(M*Q):(blknum+1)*(M*Q)]
         # Put in a matrix
         matrix = GF2Matrix.matrix_from_bits(M,Q,block,blknum) 
+        #matrix = gf2matrix.matrix_from_bits(M,Q,block,blknum) 
         # Compute rank
         rank = GF2Matrix.rank(M,Q,matrix,blknum)
-
+        #rank = gf2matrix.rank(M,Q,matrix,blknum)
         if rank == M: # count the result
             FM += 1
         elif rank == M-1:
@@ -525,4 +522,25 @@ def binary_matrix_rank_test(bits,M=32,Q=32):
     print("  Remainder Count = ",remainder) 
     print("  Chi-Square = ",chisq)
 
-    return (success, p, None)
+    return success
+
+#[0,1,1,0,1,1,0,1,0,1]
+def convert_bit_string(cadena):
+    bits = []
+    for i in cadena:
+        bits.append(int(i))
+    return bits
+def init_tests(cadena):
+    bits = convert_bit_string(cadena)
+    bmrt=binary_matrix_rank_test(bits=bits)
+    revt=random_excursion_variant_test(bits)
+    ret=random_excursion_test(bits)
+    rt=runs_test(bits)
+    mb=monobit_test(bits)
+    lroiabt=longest_run_ones_in_a_block_test(bits)
+    fwbt=frequency_within_block_test(bits)
+    dftt=dft_test(bits)
+
+    #print(dftt,type(dftt))
+    
+init_tests('0110110101')
