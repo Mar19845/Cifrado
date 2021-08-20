@@ -5,42 +5,49 @@ import WichmanHill as Wichman_Hill
 import matplotlib.pyplot as plt
 import math
 import numpy as np
+import tests as tst
 
-#https://github.com/GINARTeam/NIST-statistical-test/blob/master/01_monobit_test.py
-def test(input):
-    n = len(input)  
-    ones = input.count('1') #number of ones
-
-    zeroes = input.count('0')    #number of zeros
-
-    s = abs(ones - zeroes)  
-
-    p = math.erfc(float(s)/(math.sqrt(float(n)) * math.sqrt(2.0))) #p-value
-
-    success = ( p >= 0.01)  # success = true if p-value >= 0.01
-
-    return success
 
 def histogroma(lista):
-    guds = 0
-    fail = 0
-    n = len(lista)
-    for i in lista:
-        x= test(i)
-        if x == True:
-            guds+=1
-        if x == False:
-            fail += 1
-    print(guds,fail)
-    plt.hist(x=[guds,fail])
-    plt.show()
+    #bmrt=binary_matrix_rank_test(bits=bits)
+    #revt=random_excursion_variant_test(bits)
+    #ret=random_excursion_test(bits)
+    #rt=runs_test(bits)
+    #mb=monobit_test(bits)
+    #lroiabt=longest_run_ones_in_a_block_test(bits)
+    #fwbt=frequency_within_block_test(bits)
+    #dftt=dft_test(bits)
+    #st=serial_test(bits=bits)
+    #mut=maurers_universal_test(bits=bits)
+
+    ######
+    bmrt=0
+    revt=0
+    ret=0
+    rt=0
+    mb=0
+    lroiabt=0
+    fwbt=0
+    dftt=0
+    st=0
+    mut=0
+    for resultado in lista:
+        for i in resultado:
+            print(i)
+            break
+    
+    
 def init_histo(n):
-    histo=[]
-    for i in range(1000):
-        histo.append(lcg.LCG(n=n))
-        #histo.append(lfsr.lfsr(n,[4, 2, 5], 6))
-        #histo.append(Wichman_Hill.Wichmann_Hill(n))
+    results=[]
+    for _ in range(1000):
 
-    histogroma(histo)
-
-init_histo((255))
+        x=lcg.LCG(n=n)
+        #x=lfsr.lfsr(n,[4, 2, 5], 6)
+        #x=Wichman_Hill.Wichmann_Hill(n)
+        results.append(tst.init_tests(x))
+    #results=tst.init_tests(x)
+    histogroma(results)
+    
+#387840
+#400000
+init_histo((5000))

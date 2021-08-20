@@ -523,8 +523,153 @@ def binary_matrix_rank_test(bits,M=32,Q=32):
     print("  Chi-Square = ",chisq)
 
     return success
+#serial test
+def int2patt(n,m):
+    pattern = list()
+    for i in range(m):
+        pattern.append((n >> i) & 1)
+    return pattern
+    
+def countpattern(patt,bits,n):
+    thecount = 0
+    for i in range(n):
+        match = True
+        for j in range(len(patt)):
+            if patt[j] != bits[i+j]:
+                match = False
+        if match:
+            thecount += 1
+    return thecount
+
+def psi_sq_mv1(m, n, padded_bits):
+    counts = [0 for i in range(2**m)] 
+    for i in range(2**m):
+        pattern = int2patt(i,m)
+        count = countpattern(pattern,padded_bits,n)
+        counts.append(count)
+        
+    psi_sq_m = 0.0
+    for count in counts: 
+        psi_sq_m += (count**2)
+    psi_sq_m = psi_sq_m * (2**m)/n 
+    psi_sq_m -= n
+    return psi_sq_m            
+         
+def serial_test(bits,patternlen=None):
+    n = len(bits)
+    if patternlen != None:
+        m = patternlen  
+    else:  
+        m = int(math.floor(math.log(n,2)))-2
+    
+        if m < 4:
+            print("Error. Not enough data for m to be 4")
+            return False
+        m = 4
+    
+    # Step 1
+    padded_bits=bits+bits[0:m-1]
+    
+    # Step 2
+    psi_sq_m   = psi_sq_mv1(m, n, padded_bits)
+    psi_sq_mm1 = psi_sq_mv1(m-1, n, padded_bits)
+    psi_sq_mm2 = psi_sq_mv1(m-2, n, padded_bits)    
+    
+    delta1 = psi_sq_m - psi_sq_mm1
+    delta2 = psi_sq_m - (2*psi_sq_mm1) + psi_sq_mm2
+    
+    P1 = gammaincc(2**(m-2),delta1/2.0)
+    P2 = gammaincc(2**(m-3),delta2/2.0)
+        
+    print("  psi_sq_m   = ",psi_sq_m)
+    print("  psi_sq_mm1 = ",psi_sq_mm1)
+    print("  psi_sq_mm2 = ",psi_sq_mm2)
+    print("  delta1     = ",delta1)
+    print("  delta2     = ",delta2)  
+    print("  P1         = ",P1)
+    print("  P2         = ",P2)
+     
+    success = (P1 >= 0.01) and (P2 >= 0.01)
+    return success
+
 
 #[0,1,1,0,1,1,0,1,0,1]
+def pattern2int(pattern):
+    l = len(pattern)
+    n = 0
+    for bit in (pattern):
+        n = (n << 1) + bit
+    return n          
+         
+def maurers_universal_test(bits,patternlen=None, initblocks=None):
+    n = len(bits)
+
+    # Step 1. Choose the block size
+    if patternlen != None:
+        L = patternlen  
+    else: 
+        ns = [904960,2068480,4654080,10342400,
+              22753280,49643520,107560960,
+              231669760,496435200,1059061760]
+        L = 6
+        if n < 387840:
+            print("Error. Need at least 387840 bits. Got %d." % n)
+            #exit()
+            return False
+        for threshold in ns:
+            if n >= threshold:
+                L += 1 
+
+    # Step 2 Split the data into Q and K blocks
+    nblocks = int(math.floor(n/L))
+    if initblocks != None:
+        Q = initblocks
+    else:
+        Q = 10*(2**L)
+    K = nblocks - Q
+    
+    # Step 3 Construct Table
+    nsymbols = (2**L)
+    T=[0 for x in range(nsymbols)] # zero out the table
+    for i in range(Q):             # Mark final position of
+        pattern = bits[i*L:(i+1)*L] # each pattern
+        idx = pattern2int(pattern)
+        T[idx]=i+1      # +1 to number indexes 1..(2**L)+1
+                        # instead of 0..2**L
+    # Step 4 Iterate
+    sum = 0.0
+    for i in range(Q,nblocks):
+        pattern = bits[i*L:(i+1)*L]
+        j = pattern2int(pattern)
+        dist = i+1-T[j]
+        T[j] = i+1
+        sum = sum + math.log(dist,2)
+    print("  sum =", sum)
+    
+    # Step 5 Compute the test statistic
+    fn = sum/K
+    print("  fn =",fn)
+       
+    # Step 6 Compute the P Value
+    # Tables from https://static.aminer.org/pdf/PDF/000/120/333/
+    # a_universal_statistical_test_for_random_bit_generators.pdf
+    ev_table =  [0,0.73264948,1.5374383,2.40160681,3.31122472,
+                 4.25342659,5.2177052,6.1962507,7.1836656,
+                 8.1764248,9.1723243,10.170032,11.168765,
+                 12.168070,13.167693,14.167488,15.167379]
+    var_table = [0,0.690,1.338,1.901,2.358,2.705,2.954,3.125,
+                 3.238,3.311,3.356,3.384,3.401,3.410,3.416,
+                 3.419,3.421]
+                 
+    # sigma = math.sqrt(var_table[L])
+    mag = abs((fn - ev_table[L]) / ((0.7 - 0.8 / L + (4 + 32 / L) * (pow(K, -3 / L)) / 15) * (math.sqrt(var_table[L] / K)) * math.sqrt(2)))
+    P = math.erfc(mag)
+
+    success = (P >= 0.01)
+    return success
+
+
+
 def convert_bit_string(cadena):
     bits = []
     for i in cadena:
@@ -533,6 +678,7 @@ def convert_bit_string(cadena):
     
 def init_tests(cadena):
     bits = convert_bit_string(cadena)
+    #tests
     bmrt=binary_matrix_rank_test(bits=bits)
     revt=random_excursion_variant_test(bits)
     ret=random_excursion_test(bits)
@@ -541,7 +687,11 @@ def init_tests(cadena):
     lroiabt=longest_run_ones_in_a_block_test(bits)
     fwbt=frequency_within_block_test(bits)
     dftt=dft_test(bits)
+    st=serial_test(bits=bits)
+    mut=maurers_universal_test(bits=bits)
 
-    #print(dftt,type(dftt))
+    results_test=[bmrt,revt,ret,rt,mb,lroiabt,fwbt,dftt,st,mut]
+
+    return results_test
     
-init_tests('0110110101')
+    
