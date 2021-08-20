@@ -1,3 +1,4 @@
+
 import random as ran
     
 def randomGen():
