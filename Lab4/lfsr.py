@@ -17,7 +17,7 @@ def lfsr(n, tap, loops):
 
         sd += str(x)
       
-    print("No LFSR: " + sd)
+
     
     n_n=sd
     while (count != loops):
@@ -29,7 +29,7 @@ def lfsr(n, tap, loops):
         sd = str(x) + sd
         count += 1
     
-    print("LFSR: " + sd)
+    
     return n_n
     
 
