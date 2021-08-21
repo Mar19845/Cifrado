@@ -32,10 +32,29 @@ def histogroma(lista):
     st=0
     mut=0
     for resultado in lista:
-        for i in resultado:
-            print(i)
-            break
-    
+        for _ in resultado:
+            if resultado[0]==False:
+                bmrt+=1
+            if resultado[1]==False:
+                revt+=1
+            if resultado[2]==False:
+                ret+=1
+            if resultado[3]==False:
+                rt+=1
+            if resultado[4]==False:
+                mb+=1
+            if resultado[5]==False:
+                lroiabt+=1
+            if resultado[6]==False:
+                fwbt+=1
+            if resultado[7]==False:
+                dftt+=1
+            if resultado[8]==False:
+                st+=1
+            if resultado[9]==False:
+                mut+=1
+                
+    lista=[bmrt,revt,ret,rt,mb,lroiabt,fwbt,dftt,st,mut]
     
 def init_histo(n):
     results=[]
