@@ -39,7 +39,6 @@ def __init__():
 
         if opt == 2:
 
-            length = int(input("Ingrese el tamaño de la lista: "))
             bits = lfsr.lfsr(9, [4, 2, 5], 6)
 
             bitchain = []
@@ -65,7 +64,8 @@ def __init__():
 
 
         if opt == 3:
-            bits = input("Ingrese el tamaño de la lista: ")
+            n = int(input("Ingrese el tamaño de la lista: "))
+            bits = Wichman_Hill.Wichmann_Hill(n)
 
             bitchain = []
 
