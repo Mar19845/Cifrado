@@ -91,13 +91,13 @@ def dft_test(bits):
     
     T = math.sqrt(math.log(1.0/0.05)*n) # Compute upper threshold
     N0 = 0.95*n/2.0
-    print("  N0 = %f" % N0)
+    #print("  N0 = %f" % N0)
 
     N1 = 0.0   # Count the peaks above the upper theshold
     for mag in mags:
         if mag < T:
             N1 += 1.0
-    print("  N1 = %f" % N1)
+    #print("  N1 = %f" % N1)
     d = (N1 - N0)/math.sqrt((n*0.95*0.05)/4) # Compute the P value
     p = math.erfc(abs(d)/math.sqrt(2))
 
@@ -129,12 +129,12 @@ def frequency_within_block_test(bits):
         M = int(math.floor(n/N))
     
     if len(bits) < 100:
-        print("Too little data for test. Supply at least 100 bits")
+        #print("Too little data for test. Supply at least 100 bits")
         return False
     
-    print("  n = %d" % len(bits))
-    print("  N = %d" % N)
-    print("  M = %d" % M)
+    #print("  n = %d" % len(bits))
+    #print("  N = %d" % N)
+    #print("  M = %d" % M)
     
     num_of_blocks = N
     block_size = M #int(math.floor(len(bits)/num_of_blocks))
@@ -237,11 +237,11 @@ def longest_run_ones_in_a_block_test(bits):
         upper = (v[i] - N*p_i)**2
         lower = N*p_i
         chi_sq += upper/lower
-    print("  n = "+str(n))
-    print("  K = "+str(K))
-    print("  M = "+str(M))
-    print("  N = "+str(N))
-    print("  chi_sq = "+str(chi_sq))
+    #print("  n = "+str(n))
+    #print("  K = "+str(K))
+    #print("  M = "+str(M))
+    #print("  N = "+str(N))
+    #print("  chi_sq = "+str(chi_sq))
     p = gammaincc(K/2.0, chi_sq/2.0)
     
     success = (p >= 0.01)
@@ -265,8 +265,8 @@ def monobit_test(bits):
     
     zeroes,ones = count_ones_zeroes(bits)
     s = abs(ones-zeroes)
-    print("  Ones count   = %d" % ones)
-    print("  Zeroes count = %d" % zeroes)
+    #print("  Ones count   = %d" % ones)
+    #print("  Zeroes count = %d" % zeroes)
     
     p = math.erfc(float(s)/(math.sqrt(float(n)) * math.sqrt(2.0)))
     
@@ -290,10 +290,10 @@ def runs_test(bits):
     zeroes,ones = count_ones_zeroes(bits)
 
     prop = float(ones)/float(n)
-    print("  prop ",prop)
+    #print("  prop ",prop)
 
     tau = 2.0/math.sqrt(n)
-    print("  tau ",tau)
+    #print("  tau ",tau)
 
     if abs(prop-0.5) > tau:
         return False,
@@ -303,7 +303,7 @@ def runs_test(bits):
         if bits[i] != bits[i+1]:
             vobs += 1.0
 
-    print("  vobs ",vobs)
+    #print("  vobs ",vobs)
       
     p = math.erfc(abs(vobs - (2.0*n*prop*(1.0-prop)))/(2.0*math.sqrt(2.0*n)*prop*(1-prop) ))
     success = (p >= 0.01)
@@ -318,7 +318,7 @@ def random_excursion_test(bits):
         #if bit == 0:
         x.append((bit*2)-1)
 
-    #print "x=",x
+    ##print "x=",x
     # Build the partial sums
     pos = 0
     s = list()
@@ -327,7 +327,7 @@ def random_excursion_test(bits):
         s.append(pos)    
     sprime = [0]+s+[0] # Add 0 on each end
     
-    #print "sprime=",sprime
+    ##print "sprime=",sprime
     # Build the list of cycles
     pos = 1
     cycles = list()
@@ -342,7 +342,7 @@ def random_excursion_test(bits):
         pos = pos + 1
     
     J = len(cycles)
-    print("J="+str(J))    
+    #print("J="+str(J))    
     
     vxk = [['a','b','c','d','e','f'] for y in [-4,-3,-2,-1,1,2,3,4] ]
 
@@ -396,14 +396,14 @@ def random_excursion_test(bits):
             success = False
         else:
             err = ""
-        print("x = %1.0f\tchisq = %f\tp = %f %s"  % (x,chisq,p,err))
-    if (J < 500):
-        print("J too small (J < 500) for result to be reliable")
-    elif success:
-        print("PASS")
-    else:    
-        print("FAIL: Data not random")
-    return success
+        #print("x = %1.0f\tchisq = %f\tp = %f %s"  % (x,chisq,p,err))
+    #if (J < 500):
+        #print("J too small (J < 500) for result to be reliable")
+    #elif success:
+        #print("PASS")
+    #else:    
+        #print("FAIL: Data not random")
+    #return success
 
 
 
@@ -428,7 +428,7 @@ def random_excursion_variant_test(bits):
     for value in sprime[1:]:
         if value == 0:
             J += 1
-    print("J=",J)
+    #print("J=",J)
     # Build the counts of offsets
     count = [0 for x in range(-9,10)]
     for value in sprime:
@@ -449,26 +449,26 @@ def random_excursion_variant_test(bits):
                 success = False
             else:
                 err = ""
-            print("x = %1.0f\t count=%d\tp = %f %s"  % (x,count[x],p,err))
+            #print("x = %1.0f\t count=%d\tp = %f %s"  % (x,count[x],p,err))
             
-    if (J < 500):
-        print("J too small (J=%d < 500) for result to be reliable" % J)
-    elif success:
-        print("PASS")
-    else:    
-        print("FAIL: Data not random")
-    return success
+    #if (J < 500):
+        #print("J too small (J=%d < 500) for result to be reliable" % J)
+    #elif success:
+        #print("PASS")
+   # else:    
+        #print("FAIL: Data not random")
+   # return success
     
     #Binary Matrix test
 def binary_matrix_rank_test(bits,M=32,Q=32):
     n = len(bits)
     N = int(math.floor(n/(M*Q))) #Number of blocks
-    print("  Number of blocks %d" % N)
-    print("  Data bits used: %d" % (N*M*Q))
-    print("  Data bits discarded: %d" % (n-(N*M*Q))) 
+    #print("  Number of blocks %d" % N)
+    #print("  Data bits used: %d" % (N*M*Q))
+    #print("  Data bits discarded: %d" % (n-(N*M*Q))) 
     
     if N < 38:
-        print("  Number of blocks must be greater than 37")
+        #print("  Number of blocks must be greater than 37")
         p = 0.0
         return False
         
@@ -517,10 +517,10 @@ def binary_matrix_rank_test(bits,M=32,Q=32):
     p = math.e **(-chisq/2.0)
     success = (p >= 0.01)
     
-    print("  Full Rank Count  = ",FM)
-    print("  Full Rank -1 Count = ",FMM)
-    print("  Remainder Count = ",remainder) 
-    print("  Chi-Square = ",chisq)
+    #print("  Full Rank Count  = ",FM)
+    #print("  Full Rank -1 Count = ",FMM)
+    #print("  Remainder Count = ",remainder) 
+    #print("  Chi-Square = ",chisq)
 
     return success
 #serial test
@@ -563,7 +563,7 @@ def serial_test(bits,patternlen=None):
         m = int(math.floor(math.log(n,2)))-2
     
         if m < 4:
-            print("Error. Not enough data for m to be 4")
+            #print("Error. Not enough data for m to be 4")
             return False
         m = 4
     
@@ -581,13 +581,13 @@ def serial_test(bits,patternlen=None):
     P1 = gammaincc(2**(m-2),delta1/2.0)
     P2 = gammaincc(2**(m-3),delta2/2.0)
         
-    print("  psi_sq_m   = ",psi_sq_m)
-    print("  psi_sq_mm1 = ",psi_sq_mm1)
-    print("  psi_sq_mm2 = ",psi_sq_mm2)
-    print("  delta1     = ",delta1)
-    print("  delta2     = ",delta2)  
-    print("  P1         = ",P1)
-    print("  P2         = ",P2)
+    #print("  psi_sq_m   = ",psi_sq_m)
+    #print("  psi_sq_mm1 = ",psi_sq_mm1)
+    #print("  psi_sq_mm2 = ",psi_sq_mm2)
+    #print("  delta1     = ",delta1)
+    #print("  delta2     = ",delta2)  
+    #print("  P1         = ",P1)
+    #print("  P2         = ",P2)
      
     success = (P1 >= 0.01) and (P2 >= 0.01)
     return success
@@ -613,7 +613,7 @@ def maurers_universal_test(bits,patternlen=None, initblocks=None):
               231669760,496435200,1059061760]
         L = 6
         if n < 387840:
-            print("Error. Need at least 387840 bits. Got %d." % n)
+            #print("Error. Need at least 387840 bits. Got %d." % n)
             #exit()
             return False
         for threshold in ns:
@@ -644,11 +644,11 @@ def maurers_universal_test(bits,patternlen=None, initblocks=None):
         dist = i+1-T[j]
         T[j] = i+1
         sum = sum + math.log(dist,2)
-    print("  sum =", sum)
+    #print("  sum =", sum)
     
     # Step 5 Compute the test statistic
     fn = sum/K
-    print("  fn =",fn)
+    #print("  fn =",fn)
        
     # Step 6 Compute the P Value
     # Tables from https://static.aminer.org/pdf/PDF/000/120/333/
