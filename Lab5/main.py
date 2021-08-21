@@ -7,7 +7,7 @@ def __init__():
         print("\n 1.CIfrado AES  \n 2.rutinas AES.encrypt() y AES.decrypt()  \n 3.Encriptar archivos de teto con AES  \n 4.SALIR\n")
         opt = int(input("Elija alguna de las opciones:  \n" ))
         if opt == 1:
-            aes.CTRmode()
+            aes.CTRmode() 
             aes.CFBmode()
             aes.OFBmode()
         if opt == 2:
@@ -30,6 +30,7 @@ def __init__():
             except ValueError:
                 print('Por favor, ingresar numeros enteros')
                 print("")
+                
         if opt == 3:
             pass
         if opt == 4:
