@@ -7,7 +7,7 @@ import sys
 from fractions import Fraction
 import cmath
 import random
-import GF2Matrix
+#import GF2Matrix
 #import gf2matrix
 
 #Cumulative Test 1
