@@ -57,15 +57,21 @@ def histogroma(lista):
     lista=[bmrt,revt,ret,rt,mb,lroiabt,fwbt,dftt,st,mut]
     
 def init_histo(n):
-    results=[]
+    resultsLCG=[]
+    resultsLsfr=[]
+    resultsWH=[]
     for _ in range(1000):
 
         x=lcg.LCG(n=n)
-        #x=lfsr.lfsr(n,[4, 2, 5], 6)
-        #x=Wichman_Hill.Wichmann_Hill(n)
-        results.append(tst.init_tests(x))
+        lsf=lfsr.lfsr(n,[4, 2, 5], 6)
+        xw=Wichman_Hill.Wichmann_Hill(n)
+        resultsLCG.append(tst.init_tests(x))
+        resultsLsfr.append(tst.init_tests(lsf))
+        resultsWH.append(tst.init_tests(xw))
     #results=tst.init_tests(x)
-    histogroma(results)
+    histogroma(resultsLCG)
+    histogroma(resultsLsfr)
+    histogroma(resultsWH)
     
 #387840
 #400000
