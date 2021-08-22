@@ -403,7 +403,7 @@ def random_excursion_test(bits):
         #print("PASS")
     #else:    
         #print("FAIL: Data not random")
-    #return success
+    return success
 
 
 
@@ -457,7 +457,7 @@ def random_excursion_variant_test(bits):
         #print("PASS")
    # else:    
         #print("FAIL: Data not random")
-   # return success
+    return success
     
     #Binary Matrix test
 def binary_matrix_rank_test(bits,M=32,Q=32):

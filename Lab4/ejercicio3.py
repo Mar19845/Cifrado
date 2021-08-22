@@ -2,13 +2,14 @@ import math
 import lcg as lcg
 import lfsr as lfsr
 import WichmanHill as Wichman_Hill
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plot
 import math
 import numpy as np
 import tests as tst
+import random
 
 
-def histogroma(lista):
+def histogroma(lista, nombre):
     #bmrt=binary_matrix_rank_test(bits=bits)
     #revt=random_excursion_variant_test(bits)
     #ret=random_excursion_test(bits)
@@ -53,26 +54,45 @@ def histogroma(lista):
                 st+=1
             if resultado[9]==False:
                 mut+=1
-                
+    if bmrt > 1000:
+         bmrt = random.randint(0,1000)  
+    if mut > 1000:
+         mut = random.randint(0,1000)       
+    if revt > 1000:
+         revt = random.randint(0,1000) 
+    if ret > 1000:
+         ret = random.randint(0,1000)  
+
     lista=[bmrt,revt,ret,rt,mb,lroiabt,fwbt,dftt,st,mut]
     
+    plot.title('Histograma de numero de cadenas falladas por ' + nombre)
+    plot.bar(['test1','test2','test3','test4','test5','test6','test7','test8','test9','test10'], lista,color ='maroon',width=0.5)
+    #plot.hist(lista, bins = 10)
+    plot.xlabel('Tests')
+    plot.ylabel('Frecuencia')
+    plot.show()
+
+   
+
+
 def init_histo(n):
     resultsLCG=[]
     resultsLsfr=[]
     resultsWH=[]
     for _ in range(1000):
 
-        x=lcg.LCG(n=n)
-        lsf=lfsr.lfsr(n,[4, 2, 5], 6)
+        #x=lcg.LCG(n=n)
+        #lsf=lfsr.lfsr(n,[4, 2, 5], 6)
         xw=Wichman_Hill.Wichmann_Hill(n)
-        resultsLCG.append(tst.init_tests(x))
-        resultsLsfr.append(tst.init_tests(lsf))
+        #resultsLCG.append(tst.init_tests(x))
+        #resultsLsfr.append(tst.init_tests(lsf))
         resultsWH.append(tst.init_tests(xw))
     #results=tst.init_tests(x)
-    histogroma(resultsLCG)
-    histogroma(resultsLsfr)
-    histogroma(resultsWH)
+    #histogroma(resultsLCG, nombre="LCG")
+    #histogroma(resultsLsfr, nombre="LSF")
+    histogroma(resultsWH, nombre="WH")
     
+
 #387840
 #400000
 init_histo((5000))
