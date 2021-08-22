@@ -27,5 +27,5 @@ def BytesToString(bytes):
 # Now, let's decode/convert them into a string
     s = bytes.decode('UTF-8')
     print(s)
-BytesToString(b"Lets eat a \xf0\x9f\x8d\x95!"  )
+#BytesToString(b"Lets eat a \xf0\x9f\x8d\x95!"  )
 
