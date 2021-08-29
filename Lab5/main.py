@@ -1,4 +1,5 @@
 import AESencryption as aes
+import Rutinas as rut
 import encriptador as enc
 
 import os
@@ -13,30 +14,35 @@ def __init__():
         print("\n 1.CIfrado AES  \n 2.rutinas AES.encrypt() y AES.decrypt()  \n 3.Encriptar archivos de tetxo con AES  \n 4.SALIR\n")
         opt = int(input("Elija alguna de las opciones:  \n" ))
         if opt == 1:
-            aes.CTRmode() 
-            aes.CFBmode()
-            aes.OFBmode()
+            aes.Ejercicio1()
         if opt == 2:
-            print("\t\t1) Encriptar por cadena de texto")
-            print("\t\t2) Encriptar por bytes")
-            print("\t\t3) Encriptar por Hex")
+            print("\t\t1) Encriptar (mensaje1)")
+            print("\t\t2) Encriptar (mensaje2)")
+            print("\t\t3) Encriptar (mensaje3)")
             print("\t\t4) regresar a menu principal")
             opci=int(input("Ingrese una opcion: "))
             try:
                 if opci == 1:
-                    val = input("Ingrese la cadena de texto: ")
+                    f = open ('mensaje1.txt','r')
+                    mensaje = f.read()
+                    print("El mensaje a encriptar sera: /n", mensaje)
+                    rut.StringToBytes(mensaje)
                 elif opci == 2:
-                    val = input("Ingrese bytes: ")
+                    f = open ('mensaje2.txt','r')
+                    mensaje = f.read()
+                    print("El mensaje a encriptar sera: /n", mensaje)
+                    rut.StringToBytes(mensaje)
                 elif opci == 3:
-                    val = input("Ingrese Hex: ")
+                    f = open ('mensaje3.txt','r')
+                    mensaje = f.read()
+                    print("El mensaje a encriptar sera: /n", mensaje)
+                    rut.StringToBytes(mensaje)
                 elif opci == 4:
                     print("regresar a menu principal")
                 else:
                     print('opcion no valida')
             except ValueError:
-                print('Por favor, ingresar numeros enteros')
-                print("")
-                
+                print('Por favor, ingresar numeros enteros') 
         if opt == 3:
             key = b'[EX\xc8\xd5\xbfI{\xa2$\x05(\xd5\x18\xbf\xc0\x85)\x10nc\x94\x02)j\xdf\xcb\xc4\x94\x9d(\x9e'
             clear = lambda: os.system('cls')
@@ -44,7 +50,6 @@ def __init__():
             encodefile = enc.encrypt_file(ruta,key)
             input('Presione enter para decriptar el archivo\n')
             enc.decrypt_file(encodefile,key)
-            
         if opt == 4:
             print("\n***** FIN DEL PROGRAMA *****\n")
             st = False
@@ -53,11 +58,3 @@ def __init__():
 
 if __name__ == "__main__":
     __init__()
-
-
-
-
-
-
-
-

@@ -1,0 +1,2 @@
+El slime es un ejemplo de un fluido cuya viscosidad no es constante, cambia segun la fuerza aplicada. Si lo separas rapidamente, aplicando una gran fuerza, se vuelve muy viscoso y se rompera por la mitad. Si lo viertes suavemente, aplicando poca fuerza, fluira como la miel o la melaza. Sin embargo, se vuelve mas viscoso cuando lo agitas o amasas.
+Otro liquido no newtoniano es el ketchup o salsa de tomate. Pero este se comporta de manera opuesta al slime.

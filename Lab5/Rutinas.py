@@ -1,4 +1,4 @@
-
+import AESencryption as aes
 #funcion de texto a hexadecimal
 def StringToHex(text):
     s= text.encode('utf-8')
@@ -8,11 +8,22 @@ def StringToHex(text):
 def StringToBytes(string):
     # texto con encoding 'utf-8'
     arr = bytes(string, 'utf-8')
-    print(arr,'\n')
-    # actual bytes en el texto
-    for byte in arr:
-        print(byte, end=' ')
-    print("\n")
+    #print(arr,'\n')
+    print("\n 1.CTR AES  \n 2.CFB  \n 3.OFB  \n 4.SALIR\n")
+    opt = int(input("Elija alguna de las opciones:  \n" ))
+    try:
+        if opt == 1:
+            aes.CTRmode(arr) 
+        elif opt == 2:
+            aes.CFBmode(arr)
+        elif opt == 3:
+            aes.OFBmode(arr)
+        elif opt == 4:
+            print("regresar a menu principal")
+        else:
+            print('opcion no valida')
+    except ValueError:
+        print('Por favor, ingresar numeros enteros')
 
 def HexToString (hex):
     #"68656c6c6f" example 

@@ -18,8 +18,26 @@ from base64 import b64decode
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 
-def CTRmode():
-    data = b"secret"
+
+
+def Ejercicio1():
+    key = get_random_bytes(16)
+    print("Llave generada", key)
+    text = "Se efectuara el ejercicio 1 del laboratorio 5 de cifrado"
+    print("Texto a encriptar", text)
+    data = text.encode('utf-8')
+    cipher_encrypt = AES.new(key, AES.MODE_CFB)
+    ciphered_bytes = cipher_encrypt.encrypt(data)
+    iv = cipher_encrypt.iv
+    ciphered_data = ciphered_bytes
+    print("La cadena cifrada es: ", data)
+    cipher_decrypt = AES.new(key, AES.MODE_CFB, iv=iv)
+    deciphered_bytes = cipher_decrypt.decrypt(ciphered_data)
+    decrypted_data = deciphered_bytes.decode('utf-8')
+    print("La cadena descifrada es: ", decrypted_data)
+ 
+
+def CTRmode(data):
     key = get_random_bytes(16) 
     cipher = AES.new(key, AES.MODE_CTR)
     ct_bytes = cipher.encrypt(data)
@@ -43,8 +61,7 @@ def CTRmode():
         print("Incorrect decryption")
         print("")
 
-def CFBmode():
-    data = b"secret"
+def CFBmode(data):
     key = get_random_bytes(16)
     cipher = AES.new(key, AES.MODE_CFB)
     ct_bytes = cipher.encrypt(data)
@@ -69,8 +86,7 @@ def CFBmode():
         print("")
 
 
-def OFBmode():
-    data = b"secret"
+def OFBmode(data):
     key = get_random_bytes(16)
     cipher = AES.new(key, AES.MODE_OFB)
     ct_bytes = cipher.encrypt(data)
