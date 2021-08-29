@@ -9,13 +9,13 @@ def StringToBytes(string):
     # texto con encoding 'utf-8'
     arr = bytes(string, 'utf-8')
     #print(arr,'\n')
-    print("\n 1.CTR AES  \n 2.CFB  \n 3.OFB  \n 4.SALIR\n")
+    print("\n 1.CTR AES  \n 2.CBC  \n 3.OFB  \n 4.SALIR\n")
     opt = int(input("Elija alguna de las opciones:  \n" ))
     try:
         if opt == 1:
             aes.CTRmode(arr) 
         elif opt == 2:
-            aes.CFBmode(arr)
+            aes.CBCmode(arr)
         elif opt == 3:
             aes.OFBmode(arr)
         elif opt == 4:
