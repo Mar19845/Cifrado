@@ -28,7 +28,7 @@ def encrypt_file(file_name,key):
     enc = encrypt(plaintext, key)
     with open(file_name + ".enc", 'wb') as fo:
         fo.write(enc)
-    os.remove(file_name)
+    #os.remove(file_name)
     return file_name + ".enc" 
     
 
@@ -42,7 +42,7 @@ def decrypt_file(file_name,key):
     with open(file_name, 'rb') as fo:
         ciphertext = fo.read()
     dec = decrypt(ciphertext, key)
-    with open(file_name[:-4], 'wb') as fo:
+    with open(file_name[:-4]+".dec", 'wb') as fo:
         fo.write(dec)
     #os.remove(file_name)
 
