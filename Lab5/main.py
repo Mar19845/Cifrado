@@ -1,10 +1,16 @@
 import AESencryption as aes
+import encriptador as enc
+
+import os
+import os.path
+from os import listdir
+from os.path import isfile, join
 
 def __init__():
     st = True
     while st:
         print("***Lab 5***")
-        print("\n 1.CIfrado AES  \n 2.rutinas AES.encrypt() y AES.decrypt()  \n 3.Encriptar archivos de teto con AES  \n 4.SALIR\n")
+        print("\n 1.CIfrado AES  \n 2.rutinas AES.encrypt() y AES.decrypt()  \n 3.Encriptar archivos de tetxo con AES  \n 4.SALIR\n")
         opt = int(input("Elija alguna de las opciones:  \n" ))
         if opt == 1:
             aes.CTRmode() 
@@ -32,7 +38,13 @@ def __init__():
                 print("")
                 
         if opt == 3:
-            pass
+            key = b'[EX\xc8\xd5\xbfI{\xa2$\x05(\xd5\x18\xbf\xc0\x85)\x10nc\x94\x02)j\xdf\xcb\xc4\x94\x9d(\x9e'
+            clear = lambda: os.system('cls')
+            ruta = input("Ingrese el nombre del archivo (debe de estar en la misma carpeta que este codigo):  \n" )
+            encodefile = enc.encrypt_file(ruta,key)
+            input('Presione enter para decriptar el archivo\n')
+            enc.decrypt_file(encodefile,key)
+            
         if opt == 4:
             print("\n***** FIN DEL PROGRAMA *****\n")
             st = False
