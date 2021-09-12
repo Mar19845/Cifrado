@@ -1,21 +1,39 @@
-import hashlib
-import os
-from hashlib import blake2b
+import password_manager as pm
 
-# Calculate the first hash with a random salt.
-salt1 = os.urandom(blake2b.SALT_SIZE)
-mensaje='este es un mensaje mas largo'
-x=hashlib.sha256(b"me")
-#print(x.hexdigest())
+def __init__():
+    st = True
+    while st:
+        print("***Lab 5***")
+        print("\n 1.Implementar los cifrados sha256, sha512 y blake2b.  \n 2.Simular con las rutinas del ejercicio 1  \n 3.Simular un manejador de passwords  \n 4.SALIR\n")
+        opt = int(input("Elija alguna de las opciones:  \n" ))
+        if opt == 1:
+            print('Implementar los cifrados sha256, sha512 y blake2b.')
+        if opt == 2:
+            print('Simular con las rutinas del ejercicio 1')
+        if opt == 3:
+            pmvar=True
+            while pmvar:
+                print("\n 1.Login \n 2.Register \n 3.Salir \n")
+                option=int(input("Elija alguna de las opciones:  \n" ))
+                if option ==1:
+                    username,password=pm.ask_data()
+                    login=pm.login(username, password)
+                    if login==True:
+                        print('LOGUEADO %s'%username)
+                    elif login==False:
+                        print('Algo ingreso mal')
+                if option == 2:
+                    username,password=pm.ask_data()
+                    pm.register(username, password)
+                if option ==3:
+                    pmvar=False
+                if opt<1 or opt>3:
+                    print("\nOpción no valida, intente de nuevo\n")
+        if opt == 4:
+            print("\n***** FIN DEL PROGRAMA *****\n")
+            st = False
+        if opt<1 or opt>4:
+            print("\nOpción no valida, intente de nuevo\n")
 
-#dk = hashlib.pbkdf2_hmac('sha256', b'password', b'salt', 100000)
-#print(dk.hex())
-b = str.encode(mensaje)
-b1= str.encode(mensaje)
-dk = hashlib.pbkdf2_hmac('sha256', b, salt1, 100000)
-print(dk.hex())
-dk1 = hashlib.pbkdf2_hmac('sha256', b1, salt1, 100000)
-if dk.hex()==dk1.hex():
-    print('to funciona pa')
-else:
-    print('no funciona pa')
+if __name__ == "__main__":
+    __init__()
