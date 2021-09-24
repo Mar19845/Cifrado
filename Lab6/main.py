@@ -1,13 +1,33 @@
 import password_manager as pm
+import hashlib
+import base64
 
 def __init__():
     st = True
     while st:
-        print("***Lab 5***")
+        print("***Lab 6***")
         print("\n 1.Implementar los cifrados sha256, sha512 y blake2b.  \n 2.Simular con las rutinas del ejercicio 1  \n 3.Simular un manejador de passwords  \n 4.SALIR\n")
         opt = int(input("Elija alguna de las opciones:  \n" ))
         if opt == 1:
-            print('Implementar los cifrados sha256, sha512 y blake2b.')
+            print('Implementar los cifrados sha256, sha512 y blake2b.\n')
+            #----------------------------------------------
+            print('cifrado sha256')
+            m = hashlib.sha256(b"mensaje")
+            print('mensaje en hash binario', m.digest())
+            print('mensaje en hexadecimal', m.hexdigest())
+           # print('mensaje en Base64', m.digest().encode('base64'))
+            #----------------------------------------------
+            print('cifrado sha512')
+            m = hashlib.sha512(b"mensaje")
+            print('mensaje en hash binario', m.digest())
+            print('mensaje en hexadecimal', m.hexdigest())
+            #print('mensaje en hexadecimal', m.hexdigest())
+            #----------------------------------------------
+            print('cifrado blake2b')
+            m = hashlib.blake2b(b"mensaje")     
+            print('mensaje en hash binario', m.digest())
+            print('mensaje en hexadecimal', m.hexdigest())    
+            #print('mensaje en hexadecimal', m.hexdigest())
         if opt == 2:
             print('Simular con las rutinas del ejercicio 1')
         if opt == 3:
