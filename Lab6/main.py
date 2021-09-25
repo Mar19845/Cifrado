@@ -1,4 +1,5 @@
 import password_manager as pm
+import hashtexts as ht
 import hashlib
 import base64
 
@@ -30,6 +31,12 @@ def __init__():
             #print('mensaje en hexadecimal', m.hexdigest())
         if opt == 2:
             print('Simular con las rutinas del ejercicio 1')
+            filename = input("Ingrese el archivo al que desee generar hash (texto.txt):\n")
+            password = input("ingrese la clave del archivo:\n")
+            ht.hashGenerator(filename, password)
+        
+
+
         if opt == 3:
             pmvar=True
             while pmvar:
