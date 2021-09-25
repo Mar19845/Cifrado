@@ -1,7 +1,7 @@
 import password_manager as pm
 import hashtexts as ht
 import hashlib
-import base64
+import codecs
 
 def __init__():
     st = True
@@ -10,25 +10,37 @@ def __init__():
         print("\n 1.Implementar los cifrados sha256, sha512 y blake2b.  \n 2.Simular con las rutinas del ejercicio 1  \n 3.Simular un manejador de passwords  \n 4.SALIR\n")
         opt = int(input("Elija alguna de las opciones:  \n" ))
         if opt == 1:
+
+            texto = input("Ingrese el texto a cifrar:\n")
+            convertir = bytes(texto, 'utf-8')
+
             print('Implementar los cifrados sha256, sha512 y blake2b.\n')
             #----------------------------------------------
             print('cifrado sha256')
-            m = hashlib.sha256(b"mensaje")
+            m = hashlib.sha256(convertir)
             print('mensaje en hash binario', m.digest())
             print('mensaje en hexadecimal', m.hexdigest())
-           # print('mensaje en Base64', m.digest().encode('base64'))
+            result = codecs.encode(hashlib.sha256(convertir).digest(), 'base64')
+            print('mensaje en Base64', result, '\n')
+           # print('mensaje en Base64', base64.b64encode(hashlib.sha256("test").digest()))
+            
             #----------------------------------------------
             print('cifrado sha512')
-            m = hashlib.sha512(b"mensaje")
+            m = hashlib.sha512(convertir)
             print('mensaje en hash binario', m.digest())
             print('mensaje en hexadecimal', m.hexdigest())
-            #print('mensaje en hexadecimal', m.hexdigest())
+            result = codecs.encode(hashlib.sha512(convertir).digest(), 'base64')
+            print('mensaje en Base64', result, '\n')
             #----------------------------------------------
             print('cifrado blake2b')
-            m = hashlib.blake2b(b"mensaje")     
-            print('mensaje en hash binario', m.digest())
-            print('mensaje en hexadecimal', m.hexdigest())    
-            #print('mensaje en hexadecimal', m.hexdigest())
+            m = hashlib.blake2b()
+            m.update(convertir)  
+            result = m.digest()
+            print('mensaje en hash binario', result)
+            print('mensaje en hexadecimal', m.hexdigest())   
+            result2 = codecs.encode(result, 'base64')
+            print('mensaje en Base64', result2, '\n')
+            
         if opt == 2:
             print('Simular con las rutinas del ejercicio 1')
             filename = input("Ingrese el archivo al que desee generar hash (texto.txt):\n")
