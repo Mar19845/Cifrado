@@ -39,6 +39,26 @@ def inverso_multi(e, phi):
 #Ejercicio 4
 #algoritmo de realizar el test de fermat
 #tomado de: https://gist.github.com/Ayrx/5884802
+
+def power(a, n, p):
+     
+    res = 1
+     
+    a = a % p 
+     
+    while n > 0:
+         
+
+        if n % 2:
+            res = (res * a) % p
+            n = n - 1
+        else:
+            a = (a ** 2) % p
+             
+            n = n // 2
+             
+    return res % p
+
 def fermat_test(n, k=5):
 
     # Implementation uses the Fermat Primality Test
@@ -52,8 +72,10 @@ def fermat_test(n, k=5):
         return False
 
     for i in range(k):
-        a = random.randint(1, n-1)
-
-        if pow(a, n-1) % n != 1:
+        a = random.randint(2, n - 2)
+             
+        # Fermat's little theorem
+        if power(a, n - 1, n) != 1:
             return False
+                 
     return True

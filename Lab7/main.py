@@ -1,4 +1,5 @@
 import mcd as m
+import fermat_test as fermat
 def __init__():
     st = True
     while st:
@@ -34,7 +35,10 @@ def __init__():
                     print('El numero ',i,' no es un numero primo')
             print('\n')
         if opt == 5:
-            pass
+            n = int(input("Ingrese la longitud de los numeros primos a generar "))
+            k = int(input ("Ingrese el numero k a generar "))
+            fermat.random_with_N_digits(n,k)
+
         if opt == 6:
             print("\n***** FIN DEL PROGRAMA *****\n")
             st = False
