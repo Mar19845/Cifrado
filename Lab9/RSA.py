@@ -4,7 +4,7 @@ class cipherRSA:
 
     def generarClaves():
         print("*** Generar Claves ***\n")
-        primesInRange(200, 1000)
+        generar_clave()
     
     def encriptar():
         return 'travez'
