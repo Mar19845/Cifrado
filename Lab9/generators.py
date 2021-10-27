@@ -14,12 +14,16 @@ def primesInRange(x, y):
 
     p = random.choice(prime_list)
     q = random.choice(prime_list)
+
+    print(p, q)
     
     modN(p, q)
 
 def modN(p, q):
 
     N = p*q
+
+    print(N)
     
 
 
