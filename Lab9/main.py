@@ -21,8 +21,16 @@ def __init__():
         if opt == "1":
             cipherRSA.generarClaves()
 
+        elif opt == "2":
+            txt = input("Ingrese el texto que desea encriptar: ")
+
+            cipherRSA.encriptar(txt)
+
+        elif opt == "3":
+            cipherRSA.decriptar()
+
         elif opt == "4":
-            print("\n*** FIN DEL PROGRAMA ***d")
+            print("\n*** FIN DEL PROGRAMA ***")
             st = finish_program
             
 if __name__ == "__main__":

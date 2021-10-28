@@ -6,7 +6,7 @@ class cipherRSA:
         print("*** Generar Claves ***\n")
         generar_clave()
     
-    def encriptar():
+    def encriptar(txt):
         return 'travez'
     
     def decriptar():
