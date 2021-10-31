@@ -55,7 +55,7 @@ class cipherRSA:
 
         return message_encrypted
     
-    def decriptar(blocks, block_size=2):
+    def decriptar(file, block_size=2):
 
 
         openfile = open('private_keys.txt', 'r')
