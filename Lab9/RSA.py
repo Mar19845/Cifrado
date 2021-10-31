@@ -55,7 +55,7 @@ class cipherRSA:
 
         return message_encrypted
     
-    def decriptar(file, block_size=2):
+    def decriptar(file='encriptacion.txt', block_size=2):
 
 
         openfile = open('private_keys.txt', 'r')
@@ -68,8 +68,12 @@ class cipherRSA:
         d = int(re[1])
 
         openfile.close()
-        blocks = base64.b64decode(blocks).decode('utf-8')
-
+        file = open('encriptacion.txt', 'r')
+        file2 = str(file.readline())
+        openfile.close()
+        file.close()
+        blocks = base64.b64decode('MzQ0MjEuMTIyMA==').decode('utf-8')
+        print(blocks)
         list_blocks = blocks.split('.')
 
         int_blocks = []
@@ -90,4 +94,5 @@ class cipherRSA:
                 int_blocks[i] //= 1000
             txt += tmp
 
+        print(txt)
         return txt

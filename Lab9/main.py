@@ -32,10 +32,10 @@ def __init__():
 
         elif opt == "3":
             txt = input("Ingrese el nombre del archivo que desea desencriptar: ")
-            cipherRSA.decriptar(file)
+            cipherRSA.decriptar(txt)
 
-            a = cipherRSA.decriptar(txt)
-            print(a)
+            #a = cipherRSA.decriptar(txt)
+            #print(a)
 
         elif opt == "4":
             print("\n*** FIN DEL PROGRAMA ***")
