@@ -26,6 +26,7 @@ class cipherRSA:
 
         encrypted_blocks = []
         ciphertext = -1
+        
 
         if (len(txt) > 0):
 
@@ -52,7 +53,41 @@ class cipherRSA:
         file_encrypted.write(str(message_encrypted))
         file_encrypted.close()
 
-        return "El texto se ha cifrado y se genero un archivo"
+        return message_encrypted
     
-    def decriptar():
-        return 'x2'
+    def decriptar(blocks, block_size=2):
+
+
+        openfile = open('private_keys.txt', 'r')
+        re = str(openfile.readline())
+
+        re = base64.b64decode(re).decode('utf-8')
+        re = re.split('.')
+
+        n = int(re[0])
+        d = int(re[1])
+
+        openfile.close()
+        blocks = base64.b64decode(blocks).decode('utf-8')
+
+        list_blocks = blocks.split('.')
+
+        int_blocks = []
+
+        for s in list_blocks:
+            int_blocks.append(int(s))
+
+        txt = ""
+
+        for i in range(len(int_blocks)):
+
+            int_blocks[i] = (int_blocks[i]**d) % n
+
+            tmp = ""
+
+            for c in range(block_size):
+                tmp = chr(int_blocks[i] % 1000) + tmp
+                int_blocks[i] //= 1000
+            txt += tmp
+
+        return txt

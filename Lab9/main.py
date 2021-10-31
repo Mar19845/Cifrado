@@ -26,8 +26,16 @@ def __init__():
 
             cipherRSA.encriptar(txt)
 
+            a = cipherRSA.encriptar(txt)
+
+            print(a)
+
         elif opt == "3":
-            cipherRSA.decriptar()
+            txt = input("Ingrese el nombre del archivo que desea desencriptar: ")
+            cipherRSA.decriptar(txt)
+
+            a = cipherRSA.decriptar(txt)
+            print(a)
 
         elif opt == "4":
             print("\n*** FIN DEL PROGRAMA ***")
