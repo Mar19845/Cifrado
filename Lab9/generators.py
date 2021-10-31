@@ -32,6 +32,26 @@ def chooseE(phi):
         if (gcd(e, phi) == 1):
             return e
 
+def power(a, n, p):
+    # Initialize result
+    res = 1
+    a = a % p 
+
+    while n > 0:
+        if n % 2:
+            res = (res * a) % p
+            n = n - 1
+        else:
+            a = (a ** 2) % p
+            n = n // 2
+    return res % p
+
+def listJoiner(lista, caracter):
+    if isinstance(lista, list):
+        return caracter.join(map(str, lista))
+
+    raise TypeError("El parámetro lista debe ser una lista")
+
 
 def generate(x, y):
     prime_list = []
@@ -75,8 +95,7 @@ def generar_clave():
     f_public.write(str(public))
 
     f_public.close()
-    private = (str(d)+'.'+str(n)).encode('ascii')
-    private = base64.b64encode(private).decode()
+    private = (str(n)+'.'+str(d)).encode('ascii')
     f_private = open('private_keys.txt', 'w')
     f_private.write(str(private))
 

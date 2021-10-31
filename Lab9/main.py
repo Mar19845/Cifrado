@@ -23,19 +23,17 @@ def __init__():
 
         elif opt == "2":
             txt = input("Ingrese el texto que desea encriptar: ")
+            public = input("Ingrese la llave publica: ")
 
-            cipherRSA.encriptar(txt)
+            cipherRSA.encriptar(txt, public)
 
-            a = cipherRSA.encriptar(txt)
-
-            print(a)
 
         elif opt == "3":
-            txt = input("Ingrese el nombre del archivo que desea desencriptar: ")
-            cipherRSA.decriptar(txt)
+            ciphertxt = input("Ingrese el mensaje que desea desencriptar: ")
+            cipherRSA.decriptar(ciphertxt)
 
-            #a = cipherRSA.decriptar(txt)
-            #print(a)
+            decrypted = cipherRSA.decriptar(ciphertxt)
+            print(decrypted)
 
         elif opt == "4":
             print("\n*** FIN DEL PROGRAMA ***")
