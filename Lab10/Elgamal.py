@@ -57,15 +57,33 @@ def encrypt(message):
     s = power(h, key, q)
     p = power(g, key, q)
     
+    #encode p
+    p = str(p).encode('utf-8')
+    p = base64.b64encode(p).decode()
     msg = []
     for i in range(0, len(message)):
         msg.append(message[i])
     for i in range(0, len(msg)):
-        msg[i] = s * ord(msg[i])
+        cipher = s * ord(msg[i])
+        cipher = str(cipher).encode('utf-8')
+        cipher = base64.b64encode(cipher).decode()
+        msg[i] = cipher
     
-    return msg,p
+    #concatenan cipher text
+    textC = ''
+    for i in msg:
+        textC = textC + i + ' '  
+        
+    #write cryptic text
+    f_public=open('encrypt_msg.txt', 'w')
+    f_public.write(textC + ',' + p)
+    return textC,p
 
-def decrypt(message, p):
+def decrypt(dirreccion='encrypt_msg.txt'):
+    #get cryptic msg and key
+    msg=open(dirreccion, 'r')
+    pkeys = msg.readline()
+    message,p= pkeys.split(' ,')
     #get public key
     public_key=open('public_key.txt', 'r')
     pkeys = public_key.readline()
@@ -76,16 +94,22 @@ def decrypt(message, p):
     key = private_key.readline()
     private_key.close()
     
+    message=message.split(' ')
     #decode private key and public keys
     q=int(base64.b64decode(q).decode('utf-8'))
+    p=int(base64.b64decode(p).decode('utf-8'))
     key=int(base64.b64decode(key).decode('utf-8'))
     decryptMsg = []
     h = power(p, key, q)
     for i in range(0, len(message)):
+        message[i]=int(base64.b64decode(message[i]).decode('utf-8'))
         decryptMsg.append(chr(int(message[i]/h)))
+        
+    #write message decrypt
+    decryptText=open('decrypt_msg.txt', 'w')
+    decryptText.write(listJoiner(decryptMsg,""))
+    
     return listJoiner(decryptMsg,"")
-gen_keys()
-message,p= encrypt('public')
-print(decrypt(message,p))
-    
-    
+
+
+
